@@ -95,3 +95,25 @@ bits.reset( index );      // reset a particular bit
 bits.flip( index );       // Flip a particular bit
 std::cout << bit << std::endl;                    // Display all bits in binary
 std::cout << bits.test( index ) << std::endl;     // Display only the secified index
+
+
+============ Size ============
+Size of a class = Sum of size of individual member variables.
+Empty struct or class has size 1.
+However in C empty struct has size 0.
+
+Depends on computer to computer. On my computer -
+bool:		1 bytes
+char:		1 bytes
+wchar_t:	4 bytes
+char16_t:	2 bytes
+char32_t:	4 bytes
+short:		2 bytes
+int:		4 bytes
+long:		8 bytes
+long long:	8 bytes
+float:		4 bytes
+double:		8 bytes
+long double:	16 bytes
+
+ASCII - 0 to 127
