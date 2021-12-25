@@ -12,10 +12,11 @@ By default access specifier is public.
 Can contain both functions and member variables.
 Can create both pointers and reference to structs.
 Member could be const. Can use initializer list to assign value to it. Or can use - foo f{ 23, 45.6 }; or foo f = { 45, 67.8 }; 
-
+Can contain static members.
 
 C
-No concept of access specifiers.
+No concept of access specifiers. So no data hiding.
 Cannot hold member functions. Only member variables.
 Can create only pointers to structs.
 Can contain const members. Need to bbe initialized value when creating the struct - foo f = { 23, 34.5 }    // Ok
+No static members.
