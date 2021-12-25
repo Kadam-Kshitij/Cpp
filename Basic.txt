@@ -1,0 +1,40 @@
+============ Literals =============
+Literal is a fixed value that has been inserted directly into the source code.
+eg - int a = 23; std::string s = "Hello"; Here Hello and 23 are literals
+
+
+============ Header Guards ==========
+Used to prevent including same header file twice which can cause CTE
+#ifndef ___UNIQUE_NAME___
+#define ___UNIQUE_NAME___
+...
+#endif // ___UNIQUE_NAME___
+
+Another way is by using
+#pragma ones
+
+
+============ Pre-processors ============
+Expanded/Evaluated during pre-processing step.
+
+#define
+The defined quantity remains from the point it is declared till the end of file since pre-processor does not know anything about C++ concepts.
+
+1) Object like macros with and without substitution text
+  #define PARA
+  #define PARA 12
+2) Function like macros
+  #define PRINT(x,y) ( std::cout << x << " " << y << std::endl )
+  #define MIN(i,j) ( i < j ? i :j )
+  #define PNT(k) ( (std::cout << k << std::endl), (std::cout << k+2 << std::endl))
+
+#if, #endif, #ifdef, #ifndef, #elif, #else
+
+#if 0, #if 1  // To prevent part of the code from compiling and not compiling
+
+#pragma
+This directive is a special purpose directive and is used to turn on or off some features. This type of directives are compiler-specific 
+i.e., they vary from compiler to compiler.
+#pragma startup foo1  // function needs to be called before main
+#pragma exit foo2     // function needs to be called after main
+#pragma ones          // include header file only ones like header guard
