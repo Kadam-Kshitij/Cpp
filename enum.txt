@@ -15,7 +15,7 @@ enum Animal
 }
 
 Foo color = black;
-if ( deer == white )      // Ok
+if ( deer == white )      // No CTE. Only warning
 
 If another emun is created with same member, causes CTE.
 Does not cause error if members of two different enums are comapred.
