@@ -27,6 +27,7 @@ The defined quantity remains from the point it is declared till the end of file 
   #define PRINT(x,y) ( std::cout << x << " " << y << std::endl )
   #define MIN(i,j) ( i < j ? i :j )
   #define PNT(k) ( (std::cout << k << std::endl), (std::cout << k+2 << std::endl))
+  #define KK(x,y) ( std::cout << MIN(x, y) << std::endl )
 
 #if, #endif, #ifdef, #ifndef, #elif, #else
 
