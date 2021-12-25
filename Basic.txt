@@ -56,3 +56,30 @@ case 2:
 In case of 0 or 1, both statement_1 and statement_2 are executed.
 
 Should not initialize variables inside the switch because the initialization step might get skipped. Causes CTE.
+
+
+============ Const Pointers ============
+int a = 12, b = 13;
+const int* ptr = &a;
+ptr = &b;             // Legal
+*ptr = 44;            // Illegal
+
+int* const ptr = &a;
+ptr = &b;             // Illegal
+*ptr = 44;            // Legal
+
+const int* const ptr = &a;
+// Both ptr = &b and *ptr = 44 are illegal
+
+
+============ Reference ============
+Cannot return reference to local variable from a function.
+
+
+============ Program termination =============
+std::abort() - Abnormal termination without cleanup
+std::exit( EXIT_FAILURE ) - Normal termination with cleanup
+std::quick_exit( EXIT_SUCCESS ) - Normal termination without complete cleanup
+std::_Exit( EXIT_SUCCESS ) - Normal termination without cleanup
+std::atexit( <function_name> ) - Register function to be called when exit is called. In case of multiple function, order of calling is reverse of adding them.
+std::at_quick_exit( <function_name> ) - Register function to be called when std::quick_exit() is called.
