@@ -1,0 +1,36 @@
+============ Enum ============
+Enum actually breaks down to integer.
+
+enum Foo
+{
+	black,        // 0
+	white = 4,    // 4
+	blue,         // 5
+	yellow = -1,  // -1
+	green         // 0
+};
+enum Animal
+{
+  deer,
+}
+
+Foo color = black;
+if ( deer == white )      // Ok
+
+If another emun is created with same member, causes CTE.
+Does not cause error if members of two different enums are comapred.
+This can be solved by using enum class.
+
+
+============ Enum class ============
+enum class Goo
+{
+  black = 188
+};
+
+Goo g = Goo::white;
+if ( z == Goo::white )
+Need to use scope resolution operator to get values.
+
+To use with cout we need to use static cast
+std::cout << static_cast< int >( Goo::white ) << std::endl;
