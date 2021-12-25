@@ -7,9 +7,10 @@ Parameter - void foo( int a, int b )
 1) Pass by value - void foo( int a, int b ) -- foo( a, b );
 2) Pass by reference - void foo( int& a, int& b ) -- foo( a, b );
 3) Pass by address - void foo( int* a, int* b ) -- foo( &a, &b );
-  
 Here pass by value is used if we dont want to modify the passed arguments value. Pass by reference is used if we want to modify the passed arguments value.
 For large data types ( structs, class etc ) pass by reference should be used to prevent performance isuue due to copy.
+In case of pass by address, void foo( int* a ), foo( ptr ) the address is passed by reference. and if we change a = &<new_var> then it will not change the
+address to which ptr is pointing. If we use void foo( int*& a ), foor( ptr ), the the pointer is passed by reference and will cause chage in ptr.
   
   
 - Inline functions -
