@@ -1,0 +1,61 @@
+============ Functions ============
+Argument vs Parameters
+  Argument - foo( a, b ); 
+  Parameter - void foo( int a, int b )
+ 
+Passing arguments 
+  1) Pass by value - void foo( int a, int b ) -- foo( a, b );
+  2) Pass by reference - void foo( int& a, int& b ) -- foo( a, b );
+  3) Pass by address - void foo( int* a, int* b ) -- foo( &a, &b );
+  
+  Here pass by value is used if we dont want to modify the passed arguments value. Pass by reference is used if we want to modify the passed arguments value.
+  For large data types ( structs, class etc ) pass by reference should be used to prevent performance isuue due to copy.
+  
+  
+Inline functions -
+  inline void foo( int a, int b )
+  When a function call is made there is a overhead due to saving current address, jumping to new address, function parameters and so on. For small functions
+  this overhead could be comparable to execution time of the function. For large functions this overhead is negligible.
+  The compiler will replace the code where call to inline function is made with the body of the function. This reduces execution time.
+  Should not be used in case lot of calls are made to the inline function. This increases the size of output binary.
+  Modern computers are smart and do inlining by themselves.
+  Inlining happens at compile time.
+  
+Stack vs Heap -
+  Stack is small in size ( 1-8 MB ). Contains variables and function call stack.
+  If lot of function calls happen or in case of large data structures, the stack might get filled up causing segmentation fault. 
+  Heap is large in size. Variables allocated dynamically using new, malloc, calloc are assigned on the heap.
+  Stack memory is allocated/deallocated automatically by compiler. Heap is done by used manually.
+  Heap is slower and costly.
+  Stack is contigious. Heap is randomly allocated.
+  
+Command line args -
+  int main( int argc, char** argv )
+  int main( int argc, char* argv[] )
+  argc - Contains number of arguments. Inculing the binary name. ( ./b p1 p2 "p3 p4" Here argc will be 4 since "p3 p4" is considered as one arg )
+  argv - Array of c-stype strings. To access a particular value use argv[i] where 0 <= i < argc.
+  argv[0] is the file name of the binary ( eg - ./b ).
+  
+Ellipsis -
+  void foo( int c, ... )
+  A function can take any number of arguments.
+  va_list v1;
+  va_start( v1, c ); // First parameter is va_list to initialize. Second is last non-ellipsis argument.
+  va_arg( v1, int ); // First parameter is va_list. Second parameter is type. Used to take out arg from the list.
+  va_end( v1 );      // Cleanup the list.
+  va_copy( v2, v1 ); // No need to start v2. Only end. If we have removed few args from v1 and then done a copy, it would be wrong. Puts random value.
+  
+Function pointer -
+  int ( *foo )( int, float ) = &goo;
+  int ( *foo )( int, float ) = goo;
+  To call the function we can use two ways - 
+  foo( 23, 45 );        // Implicit dereference
+  ( *foo )( 23, 45 );   // Explicit dereference
+  *foo( 23, 45 );       // Wrong. CTE.
+  Passing function pointer to other functions -
+  void goo( int ( *fptr )( int, int ) )
+  goo( foo );
+  Another way is by using the std::function -
+  #include <functional>
+  std::function< float( int, float ) > fptr = hoo;
+  fptr( 23, 6 );
