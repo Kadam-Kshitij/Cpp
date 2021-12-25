@@ -83,3 +83,15 @@ std::quick_exit( EXIT_SUCCESS ) - Normal termination without complete cleanup
 std::_Exit( EXIT_SUCCESS ) - Normal termination without cleanup
 std::atexit( <function_name> ) - Register function to be called when exit is called. In case of multiple function, order of calling is reverse of adding them.
 std::at_quick_exit( <function_name> ) - Register function to be called when std::quick_exit() is called.
+
+
+
+============ Bitset ============
+#include <bitset>
+std::bitset<11> bits{ 0b10101010101 };    // Assigns binary value.
+std::bitset<11> bits{ 10101010101 };      // Converts the decimal value to binary
+bits.set( index );        // Set a particular bit
+bits.reset( index );      // reset a particular bit
+bits.flip( index );       // Flip a particular bit
+std::cout << bit << std::endl;                    // Display all bits in binary
+std::cout << bits.test( index ) << std::endl;     // Display only the secified index
