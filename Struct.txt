@@ -1,0 +1,21 @@
+============ Struct ============
+struct foo{
+  ...
+};
+foo f;
+
+If we use gcc, cc compiler to compile .c file, then we need to use struct in front of foo everywhere.
+To avoid writing struct everwhere we can use - typedef struct foo foo;
+
+C++
+By default access specifier is public.
+Can contain both functions and member variables.
+Can create both pointers and reference to structs.
+Member could be const. Can use initializer list to assign value to it. Or can use - foo f{ 23, 45.6 }; or foo f = { 45, 67.8 }; 
+
+
+C
+No concept of access specifiers.
+Cannot hold member functions. Only member variables.
+Can create only pointers to structs.
+Can contain const members. Need to bbe initialized value when creating the struct - foo f = { 23, 34.5 }    // Ok
