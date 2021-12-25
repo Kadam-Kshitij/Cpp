@@ -39,3 +39,8 @@ i.e., they vary from compiler to compiler.
 #pragma startup foo1  // function needs to be called before main
 #pragma exit foo2     // function needs to be called after main
 #pragma ones          // include header file only ones like header guard
+
+
+============ Increment/Decrement ============
+Pre increment is faster than post. Can be seen from the assembly code.
+Decrementing loop might be faster since comparing to 0 is faster than comparing to non-zero number.
