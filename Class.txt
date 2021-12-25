@@ -1,0 +1,6 @@
+============ Initializer list ============
+Demo( int x = 12, float y ) : m( x ), n( y )
+Used for initialization of const member variables, reference member variables and calling base class constructor.
+Better performance due to avoiding assignment operation.
+
+
