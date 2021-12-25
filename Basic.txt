@@ -44,3 +44,15 @@ i.e., they vary from compiler to compiler.
 ============ Increment/Decrement ============
 Pre increment is faster than post. Can be seen from the assembly code.
 Decrementing loop might be faster since comparing to 0 is faster than comparing to non-zero number.
+
+
+============ Switch ============
+In case break statement is not used, the code will execture the next case body.
+case 0:
+case 1:
+  <statement_1>;
+case 2:
+  <statement_2>;
+In case of 0 or 1, both statement_1 and statement_2 are executed.
+
+Should not initialize variables inside the switch because the initialization step might get skipped. Causes CTE.
