@@ -1,0 +1,19 @@
+============ Const cast ============
+Used to remove constantness of a pointer, reference, pointer to data-member when passing to a 3rd party function which does not use const
+void print( int* x )
+{
+	std::cout << *x << std::endl;
+}
+
+int main()
+{
+	const int* a = new int( 12 );
+	print( const_cast< int* >( a ) );
+}
+
+
+============ Dynamic cast ============
+Used to find the appropriate down cast to derived class from base class.
+Atleast one virtual function is needed to make this work. Causes CTE.
+Performance overhead at run time.
+Use static_cast if we are sure we will not cast to wrong type.
