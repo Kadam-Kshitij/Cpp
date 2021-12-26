@@ -1,0 +1,26 @@
+============ Functors ============
+#include <iostream>
+
+class Demo
+{
+private:
+	int a;
+public:
+	Demo( int z ) : a( z )
+	{
+	}
+
+	int operator()( int x )
+	{
+		return x + a;
+	}
+};
+
+int main()
+{
+	Demo d( 23 );
+	std::cout << d( 12 ) << std::endl;
+}
+
+// Function objects allows an object to be called as if it was an ordinary function.
+// 
