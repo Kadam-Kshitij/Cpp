@@ -1,0 +1,41 @@
+============ Smart Pointers ============
+#include <memory>
+
+// Wrappes a raw pointer.
+// User need not delete the raw pointer. Smart pointer will release the memory when it goes out of scope.
+
+
+- Unique pointers -
+// The ownership of a raw pointer can be help by only one pointer at a time.
+
+1)  Demo* ptr = new Demo{ 12, 34 };
+    std::unique_ptr< Demo > up( ptr );
+2)  std::unique_ptr< Demo > up( new Demo{ 12, 45 } );
+3)  std::unique_ptr< Demo > up = std::make_unique< Demo >( Demo{ 12, 78 } );    // This creates a new pointer
+4)  std::unique_ptr< Demo > up = std::make_unique< Demo >( *ptr );              // This creates a new pointer
+
+// If we create 2 unique pointers to point to the same raw pointer
+// The no CTE. But there is RTE. double free()
+
+// Swap ownership
+up1.swap( up2 );
+
+// Release ownership and point to nullptr. Will not destroy the raw pointer while releasing
+up.release();
+
+// Reset will change the owned object
+up.reset( newptr );
+
+
+
+
+- Shared Pointers -
+// Gives the count of shared pointers which have the owernship over the pointer owned by current shared pointer
+sh.use_count();
+
+// Owner ship is shared only via copy constructor or copy assignment.
+std::shared_ptr< Demo > sh1( sh );                                                          // Increases
+std::shared_ptr< Demo > sh2 = sh;                                                           // Increases
+std::shared_ptr< Demo > sh3 = std::make_unique< Demo >( *ptr );                             // This creates a new memory. Does not increase
+std::shared_ptr< Demo > sh4( ptr );                                                         // Manages the same location but does not increase the count
+                                                                                            // Causes double free() RTE
