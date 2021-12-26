@@ -117,3 +117,11 @@ double:		8 bytes
 long double:	16 bytes
 
 ASCII - 0 to 127
+
+
+============ Storage classes ============
+auto 
+static
+extern - The defination is available somewhere outside.
+register - Use CPU register to storge the variable for faster access.
+mutable - Use to modify a data member of a const object. mutable int x. Now x can be modified in a const member function of the class.
