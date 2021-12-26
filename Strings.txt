@@ -32,3 +32,6 @@ int main()
 		std::cout << inputs[i] << std::endl;
 	}
 }
+
+
+
