@@ -1,0 +1,34 @@
+// C++ - Allocated memory on stack with size 40.
+// Takes input from user and allocates it to str.
+// Now first 7 chars contains characters, while remaining are all '\0'
+int main()
+{
+	char* str = new char[40];
+	std::cin >> str;
+	std::cout << str << std::endl;
+}
+
+
+// If we make *( str + 3 ) = '\0'
+// Then when we cout the string only first 3 characters will be displayed.
+    *( str + 3 ) = '\0'; 
+
+
+// 2-D array of c-style strings
+// inputs points to array of 5 char pointers
+// inputs[i] corresponds to the ith pointer
+int main()
+{
+	char** inputs = new char*[5];
+
+	for ( int i = 0; i < 5; ++i )
+	{
+		inputs[i] = new char[50];
+		std::cin >> inputs[i];
+	}
+
+	for ( int i = 0; i < 5; ++i )
+	{
+		std::cout << inputs[i] << std::endl;
+	}
+}
