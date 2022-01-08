@@ -93,7 +93,7 @@ std::bitset<11> bits{ 10101010101 };      // Converts the decimal value to binar
 bits.set( index );        // Set a particular bit
 bits.reset( index );      // reset a particular bit
 bits.flip( index );       // Flip a particular bit
-std::cout << bit << std::endl;                    // Display all bits in binary
+std::cout << bits << std::endl;                    // Display all bits in binary
 std::cout << bits.test( index ) << std::endl;     // Display only the secified index
 
 
