@@ -1,0 +1,37 @@
+============ Pre-processors ============
+Expanded/Evaluated during pre-processing step.
+
+#define
+The defined quantity remains from the point it is declared till the end of file since pre-processor does not know anything about C++ concepts.
+
+1) Object like macros with and without substitution text
+  #define PARA
+  #define PARA 12
+2) Function like macros
+  #define PRINT(x,y) ( std::cout << x << " " << y << std::endl )
+  #define MIN(i,j) ( i < j ? i :j )
+  #define PNT(k) ( (std::cout << k << std::endl), (std::cout << k+2 << std::endl))
+  #define KK(x,y) ( std::cout << MIN(x, y) << std::endl )
+
+#define x 5+2 		// Ok. Since preprocessor just replaces the contents
+
+#if, #endif, #ifdef, #ifndef, #elif, #else
+#if - checks if defined and value is not zero
+#ifdef - only checks if defined. Value is not checked
+
+#if 0, #if 1  // To prevent part of the code from compiling and not compiling
+
+Eg -
+#if defined( var )
+#if !defined( var )
+#if DLEVEL > 5
+#if DLEVEL == 0
+
+#pragma
+This directive is a special purpose directive and is used to turn on or off some features. This type of directives are compiler-specific 
+i.e., they vary from compiler to compiler.
+#pragma startup foo1  // function needs to be called before main
+#pragma exit foo2     // function needs to be called after main
+#pragma ones          // include header file only ones like header guard
+
+Define can also be done at time of compilation by provideing -DVAR or -DVAR=value. In case of -DVAR default value taken is 1.
