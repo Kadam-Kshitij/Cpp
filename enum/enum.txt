@@ -43,7 +43,7 @@ enum class Foo
 Goo g = Goo::white;
 Foo f = Foo::white;
 if ( g == f )			// CTE. Cannot compare two enums of different types. Need to static cast to int
-
+if ( 3 == f )			// CTE. Cannot compare int with Foo
 if ( z == Goo::white )
 Need to use scope resolution operator to get values.
 
