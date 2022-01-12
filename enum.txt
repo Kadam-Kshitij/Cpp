@@ -12,10 +12,13 @@ enum Foo
 enum Animal
 {
   deer,
+  yellow,		// CTE
 }
 
 Foo color = black;
-if ( deer == white )      // No CTE. Only warning
+Foo f = 1;		  		// CTE
+Foo g = static_cast< Foo >( 1 ) 	// No CTE
+if ( deer == white )      		// No CTE. Only warning. This is a disadvantage.
 
 If another emun is created with same member, causes CTE.
 Does not cause error if members of two different enums are comapred.
@@ -23,12 +26,24 @@ This can be solved by using enum class.
 
 
 ============ Enum class ============
+Strongly types and strongly scoped enums
+
 enum class Goo
 {
   black = 188
+  white,
+};
+
+enum class Foo
+{
+  black = 9,		// No CTE. Allows same member name even if used in other enum
+  white,
 };
 
 Goo g = Goo::white;
+Foo f = Foo::white;
+if ( g == f )			// CTE. Cannot compare two enums of different types. Need to static cast to int
+
 if ( z == Goo::white )
 Need to use scope resolution operator to get values.
 
