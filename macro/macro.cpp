@@ -19,14 +19,14 @@ int main()
 
 	// ifdef only checks if defined. #if also checks value is not zero
 #ifdef z
-	std::cout << "Debug 0" << z << "\n";
+	std::cout << "Debug 0" << z << "\n";	// Printed
 #endif
 #if z
-	std::cout << "Debug 1" << z << "\n";
+	std::cout << "Debug 1" << z << "\n";	// Not printed
 #endif
 
 #if y == 2
-	std::cout << "Debug 2" << "\n";
+	std::cout << "Debug 2" << "\n";		// Printed
 #else
 	std::cout << "Debug 3" << "\n";
 #endif	
