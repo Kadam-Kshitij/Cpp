@@ -1,0 +1,16 @@
+============ Exception ============
+try - catch - throw
+
+To catch all type
+catch( ... )
+
+If we do - throw 32
+and have - catch ( double x )
+then it will not be caught and will cause termination.
+
+Uncaught exception cause the terminate function from standard library to be called.
+
+The stack unwinding happens when an exception occurs and the function tries to go back till it finds
+a sutaible catch block which handles it.
+The code will continue beyond the catch block.
+
