@@ -1,0 +1,29 @@
+int* x, y;  // Here x is a pointer but y is not.
+
+This is illegal -
+int* x
+double* ptr = &x;
+
+char buff[20] = "abcdef";
+cout << buff;   // This will print entire abcedf
+int buff[3] = {0,1,2};
+cout << buff;   // This will print the address of first array element
+// To print address in first case need to convert to void pointer
+cout << ( void* )buff;
+
+a[i] Can be written as i[a] because a[i] is actually *( a + i ) = *( i + a ) = i[a]
+
+
+============ Const Pointers ============
+int a = 12, b = 13;
+const int* ptr = &a;
+ptr = &b;             // Legal
+*ptr = 44;            // Illegal
+
+int* const ptr = &a;
+ptr = &b;             // Illegal
+*ptr = 44;            // Legal
+
+const int* const ptr = &a;
+// Both ptr = &b and *ptr = 44 are illegal
+
