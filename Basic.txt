@@ -11,34 +11,7 @@ Used to prevent including same header file twice which can cause CTE
 #endif // ___UNIQUE_NAME___
 
 Another way is by using
-#pragma ones
-
-
-============ Pre-processors ============
-Expanded/Evaluated during pre-processing step.
-
-#define
-The defined quantity remains from the point it is declared till the end of file since pre-processor does not know anything about C++ concepts.
-
-1) Object like macros with and without substitution text
-  #define PARA
-  #define PARA 12
-2) Function like macros
-  #define PRINT(x,y) ( std::cout << x << " " << y << std::endl )
-  #define MIN(i,j) ( i < j ? i :j )
-  #define PNT(k) ( (std::cout << k << std::endl), (std::cout << k+2 << std::endl))
-  #define KK(x,y) ( std::cout << MIN(x, y) << std::endl )
-
-#if, #endif, #ifdef, #ifndef, #elif, #else
-
-#if 0, #if 1  // To prevent part of the code from compiling and not compiling
-
-#pragma
-This directive is a special purpose directive and is used to turn on or off some features. This type of directives are compiler-specific 
-i.e., they vary from compiler to compiler.
-#pragma startup foo1  // function needs to be called before main
-#pragma exit foo2     // function needs to be called after main
-#pragma ones          // include header file only ones like header guard
+#pragma ones 
 
 
 ============ Increment/Decrement ============
@@ -56,21 +29,6 @@ case 2:
 In case of 0 or 1, both statement_1 and statement_2 are executed.
 
 Should not initialize variables inside the switch because the initialization step might get skipped. Causes CTE.
-
-
-============ Const Pointers ============
-int a = 12, b = 13;
-const int* ptr = &a;
-ptr = &b;             // Legal
-*ptr = 44;            // Illegal
-
-int* const ptr = &a;
-ptr = &b;             // Illegal
-*ptr = 44;            // Legal
-
-const int* const ptr = &a;
-// Both ptr = &b and *ptr = 44 are illegal
-
 
 ============ Reference ============
 Cannot return reference to local variable from a function.
