@@ -1,15 +1,10 @@
 ============ Constructors ============
 
 1) IIf any type of constructor ( parameterized or copy ) constructor is provided then, compiler does not provide the default constructor
-
 2) Constructor cannot be private. Causes error.
-
 3) First the members are created before executing the body of the constructor
-
 4) If we create object as A* a = new A; and dont delete it any where then only the constructor is called. Destructor is never called.
-
 5) If we create object as A* a = ( A* )malloc( sizeof( A ) ); then constructor is not called.
-
 6) class A {
     } a;    // This creates a global variable a. Here constructor and destructor are called.
 
@@ -38,9 +33,6 @@ When it copy constructor used ?
 
 ============ Destructors =============
 1) Called when the object goes out of scope or deleted manually
-
 2) Cannot accept parameters
-
 3) Cannot be private
-
 4) Destructor overloading is not allowed
