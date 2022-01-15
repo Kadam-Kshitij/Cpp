@@ -37,6 +37,11 @@ When it copy constructor used ?
 3) Cannot be private
 4) Destructor overloading is not allowed
 
+============ Virtual destructor ============
+Base* b  = new Derived;
+delete b;	// This will delete only base part if virtual destructor is not used.
+So to delete the entire object we use virtual destructor
+
 
 ============ Order of constructor call ============
 If A <- B <- C, then if object of C is created then order of constructor call A, B, C
@@ -73,4 +78,12 @@ Demo().~Demo();	// Call sequence C,D,D
 	d.~Demo();	// Calls destructor
 }	// Calls destructor
 
-If constructor has dynamically allocated variable and destructor has delete for it. Then double free() error will occur in case destructor is called explicitlly in the program. So avoid.
+If constructor has dynamically allocated variable and destructor has delete for it. 
+Then double free() error will occur in case destructor is called explicitlly in the program. So avoid.
+
+============ Constructor delegation ============
+It is possible to call other constructor from one constructor using initializer list
+Demo() : Demo( 0, 0 )
+Demo( int x ) : Demo( x, 0 )
+Demo( int x, float f ) : _x( x ), _y( y )
+This way the constructor body can be placed only in the last constructor and prevents rewritting it in the other two.
