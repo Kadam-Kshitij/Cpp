@@ -14,6 +14,15 @@ to create the object. We need to provide one parameter.
 6) class A {
     } a;    // This creates a global variable a. Here constructor and destructor are called.
 
+== Copy Constructor ==
+Demo d1, d2;
+Demo d3 = d1;   // In this case copy constructor is called
+d3 = d2;        // In this case copy assignment operator is called.
+If copy constructor or assignment operator is not provided, then compiler provides one.
+
+Demo( Demo& obj ) {}    // Here obj has to be sent via reference otherwise copy constructor is called infinite number of times causing seg. fault.
+
+
 ============ Destructors =============
 1) Called when the object goes out of scope or deleted manually
 
