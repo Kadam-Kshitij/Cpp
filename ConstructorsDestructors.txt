@@ -8,7 +8,7 @@
 6) class A {
     } a;    // This creates a global variable a. Here constructor and destructor are called.
 
-== Copy Constructor ==
+============ Copy Constructor ============
 Used to initialize object of a class using another object of the same class
 
 Demo d1, d2;
@@ -63,3 +63,14 @@ Copy constructor : Object should be send by reference otherwise recursive callin
     Demo( const Demo& obj ) : x( obj.x )
     {
     } 
+
+============ Explicitly calling ============
+Demo();		// Here constructor and destructor are called on the same line
+Demo().~Demo();	// Call sequence C,D,D
+
+{
+	Demo d;		// Calls constructor
+	d.~Demo();	// Calls destructor
+}	// Calls destructor
+
+If constructor has dynamically allocated variable and destructor has delete for it. Then double free() error will occur in case destructor is called explicitlly in the program. So avoid.
