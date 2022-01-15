@@ -87,3 +87,8 @@ Demo() : Demo( 0, 0 )
 Demo( int x ) : Demo( x, 0 )
 Demo( int x, float f ) : _x( x ), _y( y )
 This way the constructor body can be placed only in the last constructor and prevents rewritting it in the other two.
+
+============ Explicit ============
+By using explicit in front of the constructor, we can avoid implicit conversion
+Base b = 12;	// This will implicitly convert the 12 in case class has one int argument
+explicit Base( int x ) : _x( x ) 	// In this case the above line will cause CTE
