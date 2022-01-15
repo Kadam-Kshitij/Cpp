@@ -1,7 +1,6 @@
 ============ Constructors ============
 
-1) If a constructor with one parameter is defined in the class, then we cannot use the default constructor
-to create the object. We need to provide one parameter.
+1) IIf any type of constructor ( parameterized or copy ) constructor is provided then, compiler does not provide the default constructor
 
 2) Constructor cannot be private. Causes error.
 
@@ -15,12 +14,26 @@ to create the object. We need to provide one parameter.
     } a;    // This creates a global variable a. Here constructor and destructor are called.
 
 == Copy Constructor ==
+Used to initialize object of a class using another object of the same class
+
 Demo d1, d2;
 Demo d3 = d1;   // In this case copy constructor is called
 d3 = d2;        // In this case copy assignment operator is called.
 If copy constructor or assignment operator is not provided, then compiler provides one.
 
-Demo( Demo& obj ) {}    // Here obj has to be sent via reference otherwise copy constructor is called infinite number of times causing seg. fault.
+Demo( const Demo& obj ) {}    // Here obj has to be sent via reference otherwise copy constructor is called infinite number of times causing seg. fault.
+const is used so that we can copy a const object to another object. Also for assigning temp object to an object const is required.
+const Demo d1(23);
+Demo d2 = d1;           // If const is not present in copy constructor this both line will give CTE.
+Demo d3 = Demo(76);
+
+Copy constructor can be made private. This prevents copying the object to another. Helpful if class has pointers or dynamically allocated resources.
+Copy constructor constructs new object from existing object. Copy assignment operator assigns already existing object to an already existing object.
+
+When it copy constructor used ?
+1) When assigning an object to another new object.
+2) When passing object by value
+3) 
 
 
 ============ Destructors =============
