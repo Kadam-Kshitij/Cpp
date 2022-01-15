@@ -36,3 +36,30 @@ When it copy constructor used ?
 2) Cannot accept parameters
 3) Cannot be private
 4) Destructor overloading is not allowed
+
+
+============ Order of constructor call ============
+If A <- B <- C, then if object of C is created then order of constructor call A, B, C
+Order of destructor class is exactly opposite to that of constructor call in any case.
+In case of multiple inheritance
+	class D : public B1, public B2 - First B1 is called then B2 constructor
+	class D : public B2, public B1 - First B2 is called then B1 constructor
+
+class Derived : public Base1, public Base2 
+Here order of constructor and destructor call is ---> B1, B2, D, ~D, ~B2, ~B1
+if class Derived : public Base2, public Base1 then ---> B2, B1, D, ~D, ~B1, ~B2
+    
+    
+============ Types of constructors ============
+Default constructor : Takes no parameters
+    Demo()
+    {
+    }
+Parametarized constructor : Takes parameters
+    Demo( const int& val = 12, const float& f ) : x( val ), y( f )
+    {
+    }
+Copy constructor : Object should be send by reference otherwise recursive calling will take place.
+    Demo( const Demo& obj ) : x( obj.x )
+    {
+    } 
