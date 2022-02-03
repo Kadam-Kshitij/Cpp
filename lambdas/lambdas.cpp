@@ -41,6 +41,7 @@ int main()
 	// auto l6 = [] { a1 = 12; };
 
 	// Use of lambdas in STL algorithms
+	// Instead of writing a complete new function, we can use lambas function as third parameter
 	std::vector< int > v = { 1, 2, 3, 4 , 17 };
 	std::for_each( v.begin(), v.end(), [] ( int& x ) { std::cout << 2 * x << " "; } );
 	std::cout << "\n";
