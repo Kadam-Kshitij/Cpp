@@ -47,9 +47,9 @@ int main()
 	std::cout << "\n";
 	
 	bool val = std::is_sorted( v.begin(), v.end(), [] ( int& x, int& y ) -> bool { return x > y; } );
-        std::cout << "Value = " << val << std::endl;
+        std::cout << "Value = " << val << std::endl;	// 0
 
         std::vector< int > v1 = { 56, 45, 22, 1 };
         val = std::is_sorted( v1.begin(), v1.end(), [] ( int& x, int& y ) -> bool { return x > y; } );
-        std::cout << "Value = " << val << std::endl;
+        std::cout << "Value = " << val << std::endl;	// 1
 }
