@@ -45,4 +45,11 @@ int main()
 	std::vector< int > v = { 1, 2, 3, 4 , 17 };
 	std::for_each( v.begin(), v.end(), [] ( int& x ) { std::cout << 2 * x << " "; } );
 	std::cout << "\n";
+	
+	bool val = std::is_sorted( v.begin(), v.end(), [] ( int& x, int& y ) -> bool { return x > y; } );
+        std::cout << "Value = " << val << std::endl;
+
+        std::vector< int > v1 = { 56, 45, 22, 1 };
+        val = std::is_sorted( v1.begin(), v1.end(), [] ( int& x, int& y ) -> bool { return x > y; } );
+        std::cout << "Value = " << val << std::endl;
 }
