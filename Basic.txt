@@ -32,6 +32,10 @@ Should not initialize variables inside the switch because the initialization ste
 
 ============ Reference ============
 Cannot return reference to local variable from a function.
+Refernce has to be initialized at the time of declaration.
+Cannot be void. Ones assigned cannot be used to point to other.
+const int& will not allow to change the value using the reference. The value can be changed using original variable.
+int& const gives CTE.
 
 
 ============ Program termination =============
