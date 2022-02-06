@@ -1,0 +1,701 @@
+Compiling --->
+See video. 
+
+
+Literal --->
+A literal is a fixed value that has been inserted directly into the source code.
+eg - int a = 23; std::string s = "Hello"; Here Hello and 23 are literals
+
+
+Multiple files --->
+When we do #include, the contents of .h file are copied to current file. This can be seen in .ii file.
+Using -c we can compile a code to .o file. In this forward declaration comes via .h files. No function defination is required to compile the code to an object file.
+
+
+Macros --->
+Two types 
+1) Object like Macros with/without substitution text
+2) Function like Macros
+Scope - From the point they are defined till end of file. ( Done by pre-processor who does not know c++ concepts)
+#if 0 - prevent compilation of part of code.
+#pragma
+This directive is a special purpose directive and is used to turn on or off some features. This type of directives are compiler-specific i.e., they vary from compiler to compiler.
+#pragma startup foo1 ( function needs to be called before main )
+#pragma exit foo2 ( function needs to be called after main )
+#pragma ones ( include header file only ones like header guard )
+#define PRINT(x,y) ( std::cout << x << " " << y << std::endl )
+#define MIN(i,j) ( i < j ? i :j )
+#define PNT(k) ( (std::cout << k << std::endl), (std::cout << k+2 << std::endl))
+
+
+
+Namespace --->
+
+
+gdb --->
+b main ( break at main ), run, l ( list - show some code ), f ( frame -show where you are ), n ( next - go to next statement ), p <var_name> ( print ), s ( step ), backtrace ( function call stack ), info b, delete b ( info and deleting first b point ), c ( continue to next breakpoint ), f <num> ( to jump to a particular frame to check var value in that frame/function ), info locals ( print function local variables ) 
+
+
+sizeof --->
+Depends on computer to computer. On my computer -
+bool:		1 bytes
+char:		1 bytes
+wchar_t:	4 bytes
+char16_t:	2 bytes
+char32_t:	4 bytes
+short:		2 bytes
+int:		4 bytes
+long:		8 bytes
+long long:	8 bytes
+float:		4 bytes
+double:		8 bytes
+long double:	16 bytes
+
+ASCII - 0 to 127
+Unicode is another encoding ( like ASCII ) which maps lot of characters to integers
+
+
+Increment/Decrement --->
+Pre increment is faster than post. Can be seen from the assembly code.
+Decrementing loop might be faster since comparing to 0 is faster than comparing to non-zero number.
+
+
+Comma operator --->
+x,y -- Evaluate x, then y and return value of y
+a = (1,2,3) evaluated to a = 3
+a = 1, 2, 3 evaluates to a = 1
+return 1, 2, 3; Here 1, 2, 3 is considered one so return 3
+
+
+Bitset --->
+std::bitset<8> bit{ 10101010 };
+bit.reset(index), bit.set(index), bit.flip(index), bit.test(index)
+
+
+Scope --->
+Go up the hierarchy till you find the variable.
+::variable means global scope.
+
+
+Chap6 --->
+
+
+Switch case --->
+Cannot skip initialization of variable.
+
+
+constructor --->
+class Derived : public Base1, public Base2 
+Here order of constructor and destructor call is ---> B1, B2, D, ~D, ~B2, ~B1
+if class Derived : public Base2, public Base1 then ---> B2, B1, D, ~D, ~B1, ~B2
+One constructor can call another constructor in the same class. 
+IF any type of constructor is provided, then the compiler does not provide a default constructor.
+Types of constructors :
+	Default constructor : Takes no parameters
+	Parametarized constructor : Takes parameters
+	Copy constructor : Object should be send by reference otherwise recursive calling will take place.
+Demo obj = obj1; IN this case copy constructor will be called.
+obj2 = obj1; In this case overloaded = operator will be called.
+
+
+Destructor --->
+Cannot be overloaded since there are no arguments.
+In case of inheritance we should have virtual destructor, because if we have
+Base* b = d, and we do delete b, then only base destructor is called. By making it virtual the derived class destructor is also called.
+
+
+Shallow Deep copy --->
+If class member variables contain ref or pointers, then if Demo o1 = o2 is used then the default copy constructor provided by compiler will not allocate new memory to it. THis is shallow copy which can alter the values of other objects. So deep copy should be used.
+
+Class --->
+A A; Is a valid object name for class A.
+We can create class named main. However while creating the object we need to use class keyword othwise CTE will occur ---> class main m( 10 );
+
+
+Final --->
+To prevent a class from being inherited use the final keyword.
+class Foo final : public Base
+To prevent a virtual function from getting futher overriden use final class
+void foo() override final;
+
+
+Types of inheritance --->
+1) Single A <- B 
+2) Multilevel A <- B <- C <- D
+3) Multiple B1 <- D, B2 <- D
+4) Heirarchical B <- D1, B <- D2, B <- D3
+5) Hybrid ( Combination of more than one from above )
+
+
+Diamond problem --->
+B1<-B2 , B1<-B3 , B2<-D, B3<-D.
+B1 constructor will be called twice due to B2 and B3.
+To prevent this make B2 and B3 virtual as follows
+	class B2 : virtual public B
+	class B3 : virtual public B
+	class D : public B2, public B3  
+Now D can directly class B1 constructor
+	D( int x ) : B1{x}, B2{x}, B3{x} {}
+
+
+Order of constructor call --->
+If A <- B <- C, then if object of C is created then order of constructor call A, B, C
+Order of destructor class is exactly opposite to that of constructor call in any case.
+In case of multiple inheritance
+	class D : public B1, public B2 - First B1 is called then B2 constructor
+	class D : public B2, public B1 - First B2 is called then B1 constructor
+
+Exception in class --->
+Constructor can throw exception. Destructor will not be called.
+Destructor is called only for fully constructed objects.
+Destructor cannot throw exception. Aborted ( core dumped )
+
+
+Inheritance scope --->
+		 			public		protected 	private ( in Base class )
+( Type of inhe. )	( In derived class )
+public : 			public 		protected 	X
+protected : 		protected 	protected 	X
+private : 			private 	private 	X
+
+
+Virtual functions --->
+We can create base class pointer/reference from derived class object
+Base* ptr = &D; or Base& ref = D;
+Using this ptr/ref we can only access the Base class member function.
+To call the derived class member functions we need to make function virtual. Then the function is called from the most derived class which provides its functionality.
+
+Override keyword --->
+To ensure same signature is used while overriding the virtual funtion in base class
+( Without override it is possible that the signature is not same and this will not be caught in CTE )
+
+
+Pure virtual functions --->
+Make function = 0. No defination needed. However a defination can be provided. Which can be used as a default defination to be used by the overiden derived class function.
+int foo() = 0;
+Any class inheriting this class should provide the defination else the derived class will remain abstract.
+Derived d; Base* ptr = new Derived; // Allowed
+Base b; Base b = d;	// Not allowed
+
+If we delete ptr; where Base* ptr = new Derived; Then ptr cannot be used.
+
+Abstract class --->
+Has atleast one member function as pure virtual
+Abstract class cannot be instantiated.
+But pointer can be generated : Base* ptr = &D;
+
+
+Interface class --->
+Has all its member functions as pure virtual functions.
+
+Private inherance --->
+In case we do - class Derived : private Base or protected Base
+This will gice CTE - Base* ptr = new Derived;
+This will also give CTE - Base b = d;
+Since base is not accessible from derived.
+
+
+vtable --->
+Class with atleast one virtual function or one which derived from it is given a vtable
+For Base and Derived class, there will exist 2 vtables.
+vptr is added by compiler in the most Base class.
+If Base class object is created Base* p = new Base, vptr will point to base class vtable
+If derived class object is created Base* p = new Derived, vptr will point to derived class vtable
+
+
+function hiding --->
+If derived and base class have same name function ( irrespective of parameter list ) then, the derived class function hides the base class one. Will have to use scope resolution operator to acess the base class function ( obj.Base::func() ) or by using ( using Base::func ) in derived class
+
+
+Friend --->
+main can be made friend for a class
+By making a class/function friend of a class, the friend class/function can access all the member data/function.
+friend void foo();
+friend class Foo;
+
+
+Static --->
+Need to define the static member outside the class as int Class::var;
+Static members functions can only access static data members.
+Static members/functions are not associated to the object but are associated to the class.
+So we can access them directly without object as : Class::foo( 23 ); or Class::var = 34;
+Static members should not be defined in header file. Causes linker problem due to multiple copies if the header file is included by multiple .cpp files.
+This pointer is not available inside static member functions
+Does not contribute to object size.
+const cannot be used with static member functions ( CTE : static int foo() const )
+Non static member functions can access static member functions via object.
+Object can access static member function.
+
+
+Initializer list --->
+Used to initialize non static const, reference and base class constructors.
+
+
+This pointer --->
+Passed as invisible parameter to non-static member functions.
+Points to current object.
+Used for chaining function calls and differentiating variable which has same name as the class member variable.
+
+
+Const class --->
+const member functions do not modify the class object.
+const objects can only access const functions.
+
+
+Object slicing --->
+Assigning a Base object to a derived object ( Base b = d )
+Here derived part of d is sliced off and base part is assigned to b.
+This might accidentally happen, during function all
+	void foo( Base b )
+	call : foo( d )
+now the derived part is not available.
+
+
+Franken object --->
+Base& b = d2;
+b = d1;
+In this case base part of d2 changes to base part of d1.
+
+
+Anonymous object --->
+Created for temporary use. Foo{ 23 }
+No need to create the obj.
+
+Non-oberloadable operators --->
+. ?: * :: sizeof typeid
+
+new --->
+If we use new and free, It will conpile and also run. But with free destructor will not be used.
+If we use malloc with delete. It will conpile and also run. But constructor will not be used.
+
+Using --->
+
+
+Vtable --->
+Each class containing atleast one virtual function wil have Vtable.
+Used as lookup table to resolve function call at dynamic binding.
+
+
+Code timing --->
+std::chrono::high_resolution_clock::now();
+auto duration = duration_cast< std::chrono:microseconds >( stop - start );
+std::cout << duration.count();
+
+
+Scope --->
+Go up the heirarchy to see which variable we are refering to.
+
+
+Functions --->
+int foo( int x, int y ) here x,y are parameters
+z = foo( x, y ) here x,y are arguments
+Pass by value - int foo( int x ) --> foo( x )	
+Pass by reference - int foo( int& x ) --> foo( x )
+Pass by address - int foo( int* x ) --> foo( &x )
+For large data structures, pass by reference is preferred to prevent performce issue due to copy.
+When argment sent needs to be changed, pass by reference/address is preferred.
+Stack - Smaller memory size ( few MB's ), which contains the call stack. If we have large data type or large number of function call, the stack may be used up and causes segmentation error.
+Heap - large memory. Using new operator we can assign memory to this secton. 
+
+
+Inline Functions --->
+When function call happens, there is performance overhead due to saving current address jumping to new address, function parameters and so on.
+So for small functions ( few lines ) it is better to use inline
+For complex large functions, the overhead is negligible as compared to its execution time
+inline will expand the function during compilation at the place of function call
+So performance is better, but size of compiled output is more.
+Modern compilers are smart and do inlineing themselves.
+Dont use inline is there are too many calls to that function.
+Happens at compile time.
+
+
+
+Vector --->
+Vector is on stack but the array used internally is on heap.
+When the size goes above capacity, the capacity is doubled.
+Vector is totally reallocated when capacity is exceded.		
+
+
+
+
+
+
+
+
+
+
+
+
+OOPS ---->
+Encapsulation - Binding together data and functions that can manipulate the data.
+
+Polymorphism - Having many forms
+Compile time polymorphism - 
+	Function overloading ( same function name different parameter list ),
+	Operator overloading ( overloading operators )
+Run time polymorphism -
+	Function overriding ( same name function in derived class )
+	virtual functions
+
+Inheritance - Ability to derive properties and characteristics from another class.
+
+Abstraction -
+Displaying only required data to the outside world and hiding the underlying implementation. Making data private to prevent accidental modification.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Threading ---->
+std::thread t1( <func>, ..... );
+t1.joinable() - checks if thread is joinable. Needs to be checked before join or detach.
+t1.join() - Current thread has to wait till t1 is done.
+t1.detach() - Dont make the current thread wait for t1 thread to continue. If main thread is complete
+before t1, then t1 execution is suspended.
+Atleast join or detach should be called otherwise error.
+
+std:mutex ---->
+mu.lock();
+mu.unlock();
+Blocking type of mutex ( Thread is blocked if lock is not available )
+If same thread tries to acquire the lock again then unknown behaviour.
+
+try_lock ---->
+mu.try_lock();
+mu.unlock();
+Non blocking type ( If thread cannot get the lock, returns immediately without blocking the thread )
+Returns true if lock acquired, else false.
+
+lock_guard ---->
+std::lock_guard< std::mutex > lock( m );
+Scoped lock. The lock is released when the thread goes out of scope where it is defined.
+No need to unlock.
+
+
+Deadlock ---->
+Two threads waiting for locking mutex which are locked by each other.
+
+Timed mutex ---->
+std::timed_mutex m;
+m.try_lock_for( std::chrono::seconds(1) );
+m.try_lock_until( now + std::chrono::seconds(2) );
+Mutex which waits for sepcified time before, before returning
+Return true if lock acquired, false if time out.
+
+
+Recursive mutex ---->
+std::recursive_mutex m;
+One thread can lock the mutex many number of times. It shoudld be unlocked that many number of times.
+How many number of times it can be locked, is not known. When that number is reached causes system error.
+Can be used in loops and recursive functions.
+
+
+Race condition ---->
+Simultaneous access to the critical section.
+
+
+promise and future ---->
+std::promise< type > x;
+std::future< type > y = x.get_future();
+z.set_value( val );
+One thread executing statement 2 will wait till other thread sets the value of x as in the form of z.
+
+Async ---->
+std::future< type > x = std::async( std::launch::async, foo, var1, var2 );
+std::future< type > x = std::async( std::launch::deferred, foo, var1, var2 );
+x.get();
+Async will create a thread immediatelly.
+deferred will create a thread later in future when x.get() is called.
+
+std::lock ---->
+std::lock( m1, m2, m3 ... , mn )
+Blocking type of call.
+Locking sequence is random.
+If a mutex cannot be locked, then it releases the previously locked mutex
+
+std::try_lock ---->
+std_try_lock( m1, .... , mn )
+Non blocking type of call.
+Order of blocking is not defined.
+On locking all returns true else false.
+If failed to lock any mutex then it will unlock all.
+
+unique_lock ---->
+std::unique_lock< std:mutex > ul( m, xxx );
+Where xxx = std::defer_lock, std::try_to_lock, std::adopt_lock
+No need to unlock
+
+condition_variable ---->
+Used for synchronizing two threads. Needs unique lock. Waits till other thread notifies.
+std::condition_variable cv;
+cv.notify_all(), cv.notify_one()
+cv.wait( ul , [] { return x == 2; } );
+
+
+Threads ---->
+std::thread t1( foo, ... );
+t1.join();
+t1.joinable();
+t1.detach();
+std::mutex m;
+m.lock();
+m.unlock();
+m.try_lock();
+std:lock_guard< std::mutex > lock( m );
+std::timed_mutex m;
+m.try_lock_for( std::chrono::seconds( n ) );
+m.try_lock_untill( now + std::chrono::seconds( n ) );
+std::recursive_mutex m;
+std::unique_lock< std::mutex > ul( m );
+std::condition_variable cv;
+cv.wait( ul, [] return{ } );
+cv.notify_all();
+cv.notify_one();
+std::lock( m1, m2, ... , mn );
+std::try_lock( m1, m2, ..., mn );
+std::future< int > f = std::async( std::launch::async, foo, var1, var2 );
+std::future< int > f = std::async( std::launch::deferred, foo, var1, var2 );
+f.get();
+std::this_thread::get_id();
+std::this_thread::sleep_for( std::chrono::seconds( n ) );
+std::promise< int > x;
+std::future< int > f = x.get_future();
+x.set_value( val );
+f.get();
+
+pthread_t th1;
+pthread_create( pthread_t*, NULL, foo, void* );
+pthread_join( pthread_t*, );
+pthread_
+sem_t
+sem_init( sem_t*, 0, count );
+sem_wait( sem_t* );
+sem_post( sem_t* )
+sem_destroy( sem_t* );
+pthread_barrier_t
+pthread_barrier_init( pthread_barrier*, NULL, count );
+pthread_barrier_wait( pthread_barrier* );
+pthread_barrier_destroy( pthread_barrier* );
+
+
+Asynchronous cancellation --->
+T1 gives out concel request to T2. But it is not delivered instantaniously. It is queued by OS and delivered after some time. 
+
+pthread_setcancelstate( PTHREAD_CANCEL_ENABLE, 0 );
+pthread_setcanceltype( PTHREAD_CANCEL_ASYNCHRONOUS, 0 );
+
+1) Data corruption
+2) Memory leak
+3) Deaklocks
+
+void ( *cleanup_handler )( *void );
+pthread_cleanup_push( foo, arg );
+Many cleanup functions can be pushed to stack ( FIFO ).
+pthread_cleanup_pop(0);
+
+pthread_testcancel();
+
+
+
+Sorting ---->
+1) Bubble sort 
+Compare consecutive elements in an array and swap if first > second.
+This way after each iteration the heaviest element comes to the top.
+Complexity :
+( n-1 ) + ( n-2 ) + ..... + 1 = ( n-1 )( n )/2 = ( n^2 - n )/2 = O(n^2)
+
+2) Insertion sort 
+In this each element is compared with each element before it and is inserted at the point where
+the elements before it will be lower and after it will be higher.
+This way after each itearation we will get i sorted elements at the start.
+
+
+3) Selection sort - O( n^2 )
+In each iteration swap the currrent element with the smallest element from the rest.
+This way in each iteration the smallest element comes to the front.
+
+
+4) Merge sort
+Split the array at half way point. Recurssively keep spliting each array till we reach single element.
+Merge the arrays in proper order. After each merge, the merged array will be sorted.
+Keep on going till we reach the final array.
+
+
+5) Quick sort
+COnsider a pivot, Split the remaining array such that all elements before it are less then pivot and all elements after it are more that pivot.
+Continue this till single element is remaining in each array.
+
+
+Search algo ---->
+1) Linear search - Seach each element one by one from 0 to n - 1. Complexity O( n )
+2) Binary search - Array needs to be sorted. Complexity O( logn ).
+Find mid point and start halfing the array depending upon if the element is less than or more than mid point.
+3) Jump search - Array needs to be sorted. Same as linear search but the jump happens sqroot( n ) elements.
+Ones element is higher than we want do, linear search backwards.
+4) 
+
+
+
+
+
+
+
+Dynamic cast ---->
+Downcast Base class to appropriate Derived class. If downcasted to wrong derived class will result in NULLPTR
+For dynamic_cast to work, atleast one virtual function is needed.
+Avoid due to run time overhead
+
+const_cast --->
+Remove constantness of a pointer, reference or pointer to member type
+To pass const variable to function which does not declare it as const but does not modify it.  
+
+static_cast --->
+implicit conversion 
+strict than c style casting - cant cast char* to int*
+
+reinterprit cast --->
+convert any pointer to any other pointer - struct int, int, char, bool to int, 
+hardware/architecture  dependent
+use to pprint individual components of a struct.
+
+
+
+Storage classes ----> scope , visibility, life time
+auto - type deduction , compilation time inc, no effect on run time
+extern - tells compiler var is declared outside the block
+static
+register - tris to store it in microcontrollers reg for faster access
+mutable - change a member var value of const object
+
+
+
+
+Unions --->
+Same as structures, but at a time only one member variable can have value. The size of union is = to size of largest member. Last member assigned will be union value.
+
+anoymous namespace ---->
+local to the file
+
+
+UDP --->
+Smaller packet sizes than TCP
+Packet may not accur in order which they are sent
+
+
+TCP --->
+Ackno. for each packet.
+If not sent, package is reset.
+Inorder delivery
+
+
+Volatile ---->
+
+
+Zombie process ---->
+Process which has exited but is still present in the process table to report to its parent
+
+Orphan process ---->
+Process whoes parent has exited.
+
+
+
+
+
+IPC ------>
+1) FIFO or Named pipes
+Used for communication between two processes.
+Creates a file in the filesystem which can be opened for communication.
+Both ends needs to be opened ( read and write ) to proced further.
+P1 - Create FIFIO file 
+P1 - open in write, write,  close 
+P2 - open in read,	read,	close
+
+2) Pipe
+Creates a unidirectional communication channel.
+pipe( int fd[2] ); The array fd stores the read and write fd of the pipe.
+We can write to fd[1] and read from fd[0] using read and write functions.
+
+4) Shared memory
+The advantage of shared memory is that only two copy are performed
+Unlike pipe, FIFO, message queue where data is copied to kernel buff and then to other process buff.
+
+5) Message queue
+Messages can be added to the queue by processes. A process can receive the messages from the queue using the type.
+
+6) Named semaphores
+Used for synchonization between two processes
+Creates a file on the filesystem
+P1 - Open sem, check wait, post, 
+P2 - OPen sem, check wait, post, 
+
+7) Signals
+We can send signal from one process to another using kill().
+
+
+ssize_t read(int fd, void *buf, size_t count);			// Read count number of bytes from fd to buf
+ssize_t write(int fd, const void *buf, size_t count);	// Write count bytes from buf to fd
+
+int open(const char *pathname, int flags);				// Open file and return fd ( O_RDONLY, O_WRONLY )
+int close(int fd);										// Close fd
+
+int mkfifo(const char *pathname, mode_t mode);			// Create FIFO file at pathname with permission mode
+
+int pipe(int pipefd[2]);								// Creates pipe with fd[0] for read end and fd[1] for write
+
+sighandler_t signal(int signum, sighandler_t handler);	// Registers new handler function when sig is raised
+														// Handler can be user defined function, SIG_IGN, SIG_DFL
+														// Ignore signal if IGN
+int kill(pid_t pid, int sig);							// Sends sig signal to process with pid
+
+
+
+
+Little/Big Endian ---->
+Little endien - First LSB is stored
+Big endien - MSB is stored first
+To check PC is litter/big, print first char of int 1
+
+calloc initializes the memory. So slower.
+
+printf and scanf returns number of chars printed or read from console		
+
+
+
+Puzzels --->
+1) To differenciate between local and global var of same name, use :: for global
+2) function can be on left side of = if it returns a reference
+3) It is possible to access private members via pointers
+Base b;
+int* ptr = ( int* )&b;
+*ptr = 12;
+Similarly we can increment pointer to get other members.
+4) To print before main
+create glabal var, int g = printf( "xx" );
+or create global class object and put printf in constructor.
+or use a
+5) Swap
+a = a + b;
+b = a - b;
+a = a - b;
+6) Max, min 
+max = ( ( a + b ) + abs( a - b ) ) / 2
+max = ( ( a + b ) - abs( a - b ) ) / 2
+
+
+
+Signals --->
+SIGABRT
+SIGINT
+SIGSEGV
+SIGFPE
+SIGILL
+SIGTERM
