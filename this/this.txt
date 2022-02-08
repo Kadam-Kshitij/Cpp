@@ -19,6 +19,12 @@ this is not available inside friend function
 
 sizeof is size of pointer
 
+delete this in the destructor will call the destructor infinite number of times.
+delete can be used only with objects created with new. Otherwise the output is undefined behavior. ( invalid pointer )
+
+delete in constructor or function will cause the memory to be deleted. So the values at that location will be garbage values.
+And double free error will occur when the destructor is called.
+
 --- Use ---
 Differentiate between member variable and function argument which have the same name.
 this->x = x;
