@@ -17,6 +17,8 @@ or change its pointing location as this = new Base;
 
 this is not available inside friend function
 
+sizeof is size of pointer
+
 --- Use ---
 Differentiate between member variable and function argument which have the same name.
 this->x = x;
