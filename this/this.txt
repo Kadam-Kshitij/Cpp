@@ -1,0 +1,22 @@
+============ this pointer ============
+this pointer points to the object which called the class member variable.
+It is of the same type as the object it is pointing to and is const. ( Base* const )
+
+If we print
+&obj in main or
+this in class member function, it will print the same address which is the address of the class object.
+
+It is sent internally by the compiler as an argument to the class member function.
+
+this pointer is not availabe inside the static members since, static members are not associated to the object but to the class.
+
+this pointer is available inside the constructor as well. The object is created and then
+
+It is a rvalue, not a lvalue. So we cannot print its address like &this
+or change its pointing location as this = new Base;
+
+this is not available inside friend function
+
+--- Use ---
+Differentiate between member variable and function argument which have the same name.
+this->x = x;
