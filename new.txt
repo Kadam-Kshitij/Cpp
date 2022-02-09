@@ -20,3 +20,5 @@ In this case new will return NULL instread of exception.
 
 void operator delete( void* )
 void operator delete[]( void* )
+
+If we use new with free(), then destructor is not called. This might cause memory leak.
