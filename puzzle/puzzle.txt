@@ -4,3 +4,5 @@ In case there is a global variable with the same name as local variable, we need
 -- Function on lhs --
 Function can be on lhs ( foo() = 12 ) if the function return type is a reference which can be assigned a value.
 
+-- Access private members --
+The private members can be accessed via reinterpret_cast and incrementing pointer according to order of class member variables.
