@@ -6,3 +6,16 @@ Function can be on lhs ( foo() = 12 ) if the function return type is a reference
 
 -- Access private members --
 The private members can be accessed via reinterpret_cast and incrementing pointer according to order of class member variables.
+
+-- Function before main --
+1) Global variable
+int g = printf( "Print" );
+
+2) Global class or struct
+class Demo {
+...
+} obj;
+
+3) void myStartupFun(void) __attribute__((constructor));
+
+
