@@ -28,3 +28,6 @@ Overloaded new operator
 Constructor
 Destructor
 Overloaded delete operator
+
+delete should be called only on pointers which are allocated using new keyword.
+Base b; Base* p = &b; delete p; This will compile but will cause RTE - invalid pointer.
