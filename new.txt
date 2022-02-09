@@ -17,3 +17,6 @@ new will throw bad_alloc exception if it is not able to allocate memory.
 But we can use
 new( std::nothrow ) int;
 In this case new will return NULL instread of exception.
+
+void operator delete( void* )
+void operator delete[]( void* )
