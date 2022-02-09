@@ -23,3 +23,7 @@ class Demo {
 int arr[3] = { a, b, c };
 int x = 1;
 int y = arr[x];
+
+-- Prevent allocating dynamic objects --
+Make the new operator private
+void* new( size_t size );
