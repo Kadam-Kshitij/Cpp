@@ -1,6 +1,8 @@
 ============ Constructors ============
 
-1) IIf any type of constructor ( parameterized or copy ) constructor is provided then, compiler does not provide the default constructor
+Consttructors have same name as Class. No return value. Called automatically when class instance is created.
+
+1) If any type of constructor ( parameterized or copy ) constructor is provided then, compiler does not provide the default constructor
 2) Constructor cannot be private. Causes error.
 3) First the members are created before executing the body of the constructor
 4) If we create object as A* a = new A; and dont delete it any where then only the constructor is called. Destructor is never called.
@@ -15,6 +17,7 @@ Demo d1, d2;
 Demo d3 = d1;   // In this case copy constructor is called
 d3 = d2;        // In this case copy assignment operator is called.
 If copy constructor or assignment operator is not provided, then compiler provides one.
+User defined copy constructor is needed incase od pointer member variable or dynamic 
 
 Demo( const Demo& obj ) {}    // Here obj has to be sent via reference otherwise copy constructor is called infinite number of times causing seg. fault.
 const is used so that we can copy a const object to another object. Also for assigning temp object to an object const is required.
@@ -28,7 +31,8 @@ Copy constructor constructs new object from existing object. Copy assignment ope
 When it copy constructor used ?
 1) When assigning an object to another new object.
 2) When passing object by value
-3) 
+3) Returning class object by value
+4) Temporary class objects
 
 
 ============ Destructors =============
