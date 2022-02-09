@@ -1,0 +1,19 @@
+Malloc vs new
+1) new calls the constructor, malloc does not
+2) new is an operator, malloc is a function
+3) new returns pointer of data type, malloc returns void pointer
+4) new can be overloaded, malloc cannot
+5) new calculates memory on its own, malloc needs the memory from user
+6) In case of insufficient memory, malloc returns NULL, new throws bad_alloc exception.
+
+delete vs free()
+1) delete calls the destructor, free() does not.
+2) delete is a operator, free() is a function
+3) delete is faster than free()
+
+delete NULL pointer has no effect
+
+new will throw bad_alloc exception if it is not able to allocate memory.
+But we can use
+new( std::nothrow ) int;
+In this case new will return NULL instread of exception.
