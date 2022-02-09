@@ -1,0 +1,6 @@
+-- Access glbal variable --
+In case there is a global variable with the same name as local variable, we need to use scope resolution operator :: to access the global variable
+
+-- Function on lhs --
+Function can be on lhs ( foo() = 12 ) if the function return type is a reference which can be assigned a value.
+
