@@ -1,0 +1,7 @@
+1) Reference cannot be void/NULL. POinters can be NULL.
+2) Reference cannot refer to a different location other than the one it is initialized.
+3) Reference needs to be initialized at the time of declaration.
+
+Advantage of reference -
+1) Since initializtion is must, wild reference do not exist.
+2) Do not need dereferenc to access the value.
