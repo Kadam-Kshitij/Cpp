@@ -19,3 +19,4 @@ Does not contribute to object size.
 const cannot be used with static member functions ( CTE : static int foo() const )
 Non static member functions can access static member functions via object.
 Object can access static member function.
+static member functions cannot be virtual.
