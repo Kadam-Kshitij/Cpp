@@ -43,7 +43,7 @@ When it copy constructor used ?
 
 ============ Virtual destructor ============
 Base* b  = new Derived;
-delete b;	// This will delete only base part if virtual destructor is not used.
+delete b;	// This will only call the base destructor, not the derived destructor.
 So to delete the entire object we use virtual destructor
 
 
