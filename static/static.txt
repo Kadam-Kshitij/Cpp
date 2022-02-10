@@ -1,2 +1,21 @@
 static members are only declared inside the class.
 They need to be explicitly defined outside the class.
+
+Class cannot contain data member as its own type
+class A{
+    A a;
+};
+This will give CTE - incomplete type
+But it can contain static A a or A* a;
+
+
+Need to define the static member outside the class as int Class::var;
+Static members functions can only access static data members.
+Static members/functions are not associated to the object but are associated to the class.
+So we can access them directly without object as : Class::foo( 23 ); or Class::var = 34;
+Static members should not be defined in header file. Causes linker problem due to multiple copies if the header file is included by multiple .cpp files.
+This pointer is not available inside static member functions
+Does not contribute to object size.
+const cannot be used with static member functions ( CTE : static int foo() const )
+Non static member functions can access static member functions via object.
+Object can access static member function.
