@@ -1,3 +1,2 @@
 static members are only declared inside the class.
 They need to be explicitly defined outside the class.
-
