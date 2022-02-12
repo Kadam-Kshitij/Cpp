@@ -6,6 +6,7 @@
 5) Detecting use of uninitialized variables
 6) Calling free() twice on the same pointer.
 7) Allocating negative values of memory.
+8) Overlapping memory copy operations.
 
 --- Drawbacks ---
 1) Will consume more memory than usual. This might be a problem in case we are testing a very huge program.
