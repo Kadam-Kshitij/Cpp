@@ -1,0 +1,11 @@
+--- Uses ---
+1) Check for memory leaks ( not freeing dynamically allocated memory )
+2) Finding invalid pointers ( accessing memory which was deleted/free )
+3) Mismached new/malloc with delete/delete[]/free
+4) Read or write to invalid memory location ( out of index memory )
+5) Detecting use of uninitialized variables
+6) Calling free() twice on the same pointer.
+7) Allocating negative values of memory.
+
+--- Drawbacks ---
+1) Will consume more memory than usual. This might be a problem in case we are testing a very huge program.
