@@ -1,0 +1,44 @@
+--- Compiling ---
+Compile program using -g option
+
+--- Arguments to program ---
+run <arg1> <arg2>             // If args are not provided then args to last run or those set using set args are used
+set args <arg1> <arg2> ....   // Set args to be used by run
+show args
+
+--- Environment ---
+set environment <var> = <value>
+unset environment <var>
+show environment <var>
+show paths
+path <directory>  // Add path to be searched
+
+--- Directory ---
+cd <path>
+pwd
+
+--- Commands ---
+shell <command>
+make <args>
+
+--- Invoke ---
+gdb <binary>
+file <binary>     // To change debugged program while running gdb
+
+--- Print code ---
+list
+list <function>
+list <linenum>
+
+--- Search ---
+fo <regexp>
+rev <regrxp>
+
+--- Frames ---
+backtrace,bt
+frame, frame <num>            // Displays the frame/jump to the frame denoted by num
+info frame, info frame <num>  // Displays info about the frame
+info locals                   // Print local variables in current frame
+info args                     // Print args to the current frame
+up <n>                        // Move up or down by n frames
+down <n>
