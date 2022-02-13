@@ -42,3 +42,9 @@ info locals                   // Print local variables in current frame
 info args                     // Print args to the current frame
 up <n>                        // Move up or down by n frames
 down <n>
+
+--- Memory ---
+x/nfu <address>
+n - How many locations to display
+f - Format to display in. Same as the ones used in printf
+u - One unit is equal to how many bytes, b, h, w, g ( 1, 2, 4, 8 bytes )
