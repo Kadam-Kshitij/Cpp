@@ -20,3 +20,5 @@ const cannot be used with static member functions ( CTE : static int foo() const
 Non static member functions can access static member functions via object.
 Object can access static member function.
 static member functions cannot be virtual.
+
+In case static member is not defined after the class, causes CTE. ( undefined reference to Base::i )
