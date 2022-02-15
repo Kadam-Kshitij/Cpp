@@ -8,3 +8,23 @@ void* operator new( size_t size );
 --- Initializer list is faster ---
 Initializer list is one step operation. Initialize at the time of declaration ( copy constructor ).
 Assigning inside the body of a constructor is two step. Define then assign ( using assignment operator ).
+
+--- Nested class ---
+Nested class privated members are not available in outside Enclosing class
+Enclosing class private members have access to nested class members.
+
+--- Reference to r-value ---
+int&& ref = 5;
+int&& ref = a; // CTE
+&& is used for reference to r-value.
+void foo( int&& z )
+foo(23);
+foo(a); // CTE
+
+--- Reference address ---
+We cannot print address of a reference
+&a and &ref will print address of a.
+
+--- Operator overload ---
+<< and >> operators cannot be overloaded as member functions since it nneds to be done as a member function of left operand which is cout or cin.
+=, [], (), -> needs to be overloaded as member function.
