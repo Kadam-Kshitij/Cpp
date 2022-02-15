@@ -1,0 +1,3 @@
+--- Prevent copy from object to another ---
+Make the copy constructor and copy assignment operator private.
+
