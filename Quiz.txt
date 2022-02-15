@@ -4,3 +4,7 @@ Make the copy constructor and copy assignment operator private.
 --- Prevent creating object on heap ---
 Make new operator private
 void* operator new( size_t size );
+
+--- Initializer list is faster ---
+Initializer list is one step operation. Initialize at the time of declaration ( copy constructor ).
+Assigning inside the body of a constructor is two step. Define then assign ( using assignment operator ).
