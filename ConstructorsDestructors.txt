@@ -46,6 +46,22 @@ Base* b  = new Derived;
 delete b;	// This will only call the base destructor, not the derived destructor.
 So to delete the entire object we use virtual destructor
 
+============ Destructor ============
+Base b // This will call the constructor. Destructor is automatically called when object goes out of scope
+b.~Base() 	// Calls the destructor. Should not be done since destructor is again called after going out of scope.
+		//Can cause double free if destructor has delete statement
+Base* ptr = new Base;	// This will call the constructor. Destructor will not be called if delete ptr is not used
+delete ptr;	// Calls the destructor
+Base();		// Temporary object. Gets constructed and deleted at the same line.
+Base().~Base();	// C -> D -> D onthe same line
+
+============ Placement new ============
+Avoiding to ask memory from kernel again and again.
+char* ptr = new char[ 10 * sizeof( Base ) ];
+Base* obj1 = new ( &ptr[4] ) Base();
+obj1->~Base();
+delete[] ptr;
+
 
 ============ Order of constructor call ============
 If A <- B <- C, then if object of C is created then order of constructor call A, B, C
