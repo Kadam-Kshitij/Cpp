@@ -1,3 +1,6 @@
 --- Prevent copy from object to another ---
 Make the copy constructor and copy assignment operator private.
 
+--- Prevent creating object on heap ---
+Make new operator private
+void* operator new( size_t size );
