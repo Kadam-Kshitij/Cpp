@@ -5,3 +5,10 @@
 Advantage of reference -
 1) Since initializtion is must, wild reference do not exist.
 2) Do not need dereferenc to access the value.
+
+
+--- Reference ---
+int& ref = a;
+int& ref2 = b;
+ref = b;    // This will change the value of a and ref. It will not make ref point to b
+ref = ref2; // Same
