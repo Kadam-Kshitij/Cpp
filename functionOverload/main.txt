@@ -1,0 +1,35 @@
+#include <iostream>
+
+class Base
+{
+public:
+	void main()
+	{
+		std::cout << "===main1\n";
+	}
+	void main( int x )
+	{
+		std::cout << "---main2\n";
+	}
+
+	void foo( int x, int y )
+	{
+		std::cout << "@@@foo\n";
+	}
+	void foo( float x, float y )
+	{
+		std::cout << "$$$foo\n";
+	}
+};
+
+int main()
+{
+	std::cout << "+++main\n";
+	Base b;
+	b.main();
+	b.main( 23 );
+	// main();
+	
+	b.foo( 25, 54 );
+	b.foo( 24.6f, 34.7f );
+}
