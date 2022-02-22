@@ -12,3 +12,10 @@ int& ref = a;
 int& ref2 = b;
 ref = b;    // This will change the value of a and ref. It will not make ref point to b
 ref = ref2; // Same
+
+const int& ref = a;
+ref = 3;  // CTE
+a = 18;   // This is OK
+
+int& const z = a; // CTE - reference cannot have such a const
+
