@@ -1,0 +1,22 @@
+If Base catch block is present before derived catch block,
+the derived catch block is never reached. Base catch block will catch both throw base ans throw derived
+
+If Derived block is placed above base catch block
+then base will catch throw base ans derived will catch throw derived
+
+int catch block will not catch throw char.
+Conversion does not take place in case of catch block.
+
+catch( ... ) catches all types of exception
+
+If exception is not caught, then program terminates
+
+If constructor of a class throws exception then the destructor is not called since destructor is called only for fully created class objects
+
+Destructor throws exception, then the program will terminate since there is no block to catch the exception
+
+Exceptions should be thrown by value and caught by reference
+This is to prevent object slicing
+If we do throw; the original exception is rethrown.
+If we do throw e; then the caught exception is rethrown
+
