@@ -17,3 +17,11 @@ Used to find the appropriate down cast to derived class from base class.
 Atleast one virtual function is needed to make this work. Causes CTE.
 Performance overhead at run time.
 Use static_cast if we are sure we will not cast to wrong type.
+
+B <- D1 and B <- D2
+If we Upcase D1* to B*
+No error with downcast from B* to D1*
+Returns NULL if we downcast B* to D2*
+
+For reference we can downcast from B& to D1&
+but causes bad_alloc exception when we try to B& to D2&
