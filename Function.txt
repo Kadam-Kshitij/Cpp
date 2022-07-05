@@ -60,3 +60,5 @@ Another way is by using the std::function -
 #include <functional>
 std::function< float( int, float ) > fptr = hoo;
 fptr( 23, 6 );
+
+If function pointer is made NULL, it can lead to undefined behavior.
