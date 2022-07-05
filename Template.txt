@@ -1,0 +1,21 @@
+===== Template function =====
+template< typename T >
+T foo( T x )
+Call --> foo< int >( 23 )
+
+
+===== Template class =====
+template< typename T1, typename T2 >
+class Base
+
+template< typename T1, typename T2 >
+T1 Base< T1, T2 >::goo( T2 x )
+
+Call --> Base< int, float > obj; obj.goo( 21.4 )
+
+
+===== Template function with type and size =====
+template< typename T, int N >
+void hoo( T x )
+
+Call --> hoo< std::string, 4 >( "Kshitij" );
