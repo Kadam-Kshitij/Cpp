@@ -34,9 +34,6 @@ Stack is contigious. Heap is randomly allocated.
 int main( int argc, char** argv )
 int main( int argc, char* argv[] )
 
-Array of function pointers - void( *fptr )( int, float ) = { foo, goo, hoo };
-Call --> ( *fptr[i] )( 23, 57.3 );
-Array of function pointers can be used for call back. ( Eg - Event loop )
 argc - Contains number of arguments. Inculing the binary name. ( ./b p1 p2 "p3 p4" Here argc will be 4 since "p3 p4" is considered as one arg )
 argv - Array of c-stype strings. To access a particular value use argv[i] where 0 <= i < argc.
 argv[0] is the file name of the binary ( eg - ./b ).
