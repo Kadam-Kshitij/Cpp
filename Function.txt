@@ -62,3 +62,8 @@ std::function< float( int, float ) > fptr = hoo;
 fptr( 23, 6 );
 
 If function pointer is made NULL, it can lead to undefined behavior.
+
+Pointer to member function of a class
+int ( Base::*fptr )( float ) = &Base::foo;
+( obj.*fptr )( 23.4 );
+( ptr->*fptr )( 13.4 );
