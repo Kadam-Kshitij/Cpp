@@ -71,3 +71,7 @@ Pointer to member function of a class
 int ( Base::*fptr )( float ) = &Base::foo;
 ( obj.*fptr )( 23.4 );
 ( ptr->*fptr )( 13.4 );
+
+Array of function pointers - void( *fptr )( int, float ) = { foo, goo, hoo };
+Call --> ( *fptr[i] )( 23, 57.3 );
+Array of function pointers can be used for call back. ( Eg - Event loop )
