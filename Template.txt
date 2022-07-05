@@ -19,3 +19,27 @@ template< typename T, int N >
 void hoo( T x )
 
 Call --> hoo< std::string, 4 >( "Kshitij" );
+
+
+===== Override for a particular type =====
+template<>
+std::string foo< std::string >( std::string x )
+
+
+===== Override a function template =====
+template< typename T >
+void ioo( T x )
+
+template< typename T1, typename T2 >
+void ioo( T1 x, T2 y )
+
+===== Class with non-type argument =====
+template< typename T, int size >
+class joo
+
+template< typename T, int size >
+void joo< T, size >::koo( T x )
+
+Call --> joo< float, 5 > obj1;
+Call --> obj1.koo( 23.6 );
+
