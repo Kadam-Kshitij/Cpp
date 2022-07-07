@@ -29,7 +29,7 @@ int main()
 	l2();
 
 	// CTE - assignment to read only variables
-	// auto l3 = [=] { a = 10; };		// All external variables as reference
+	// auto l3 = [=] { a = 10; };		// All external variables as value
 	// auto l4 = [a,&b] { a = 10; };	// Here a is by value, b by reference
 	
 	// Another way to send by reference
@@ -52,4 +52,8 @@ int main()
         std::vector< int > v1 = { 56, 45, 22, 1 };
         val = std::is_sorted( v1.begin(), v1.end(), [] ( int& x, int& y ) -> bool { return x > y; } );
         std::cout << "Value = " << val << std::endl;	// 1
+	
+	// CTE - m previously declared as capture
+	// int m = 10, n = 28;
+    	// auto l = [m,&n]( int& m ){ n += 20; };
 }
