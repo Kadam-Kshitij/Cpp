@@ -46,6 +46,7 @@ int main()
 	std::function< int( float, std::string ) > fptr3 = hoo;		// Using std library
 	fptr3( 3.67, "fgh" );
 
+	// Function pointer to class member fnuctions
 	Base b;
 	void ( Base::*cptr )( int ) = &Base::zoo;
 	( b.*cptr )( 23 );
