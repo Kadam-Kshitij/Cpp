@@ -71,3 +71,6 @@ Also with c++17 and above, we can assign non-static member variables using inlin
 	static const int x = 23;
 	static constexpr int y = 34;
 	static inline int z = 19;	// Available with c++17 and above
+
+=========== Nested classes ===========
+Classes can contain other classes as well. See code
