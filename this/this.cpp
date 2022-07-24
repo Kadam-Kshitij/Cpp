@@ -18,7 +18,7 @@ public:
 		// std::cout << &this;
 	}
 
-	// CTE - this pointer is not available inside this pointer
+	// CTE - this pointer is not available inside static member variables
 	// static void goo()
 	// {
 	// 	std::cout << this << std::endl;
