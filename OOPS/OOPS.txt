@@ -1,0 +1,8 @@
+=========== Access specifiers ===========
+Public - Available everywhere
+Protected - Available in the current class and derived class
+Private - Available only in current class.
+
+Friend class / function - Has access to all members functions/variables of a class
+eg - friend class Foo;
+eg - friend void goo( const Base& b );
