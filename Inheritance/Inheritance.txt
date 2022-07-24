@@ -30,9 +30,20 @@ Uses
 4) Calling base class member functions.
 eg - Derived( int a, int x ) : val{ a }, Base{ x }
 
+============== Pure virtual functions ==============
+Make function = 0. No defination needed. However a defination can be provided.
+Which can be used as a default defination to be used by the overiden derived class function.
+int foo() = 0;
+Any class inheriting this class should provide the defination else the derived class will remain abstract.
+Derived d; Base* ptr = new Derived; // Allowed
+Base b; Base b = d;	// Not allowed
+
 
 ============== Abstract Class ==============
 Has atleast one member function as pure virtual
 Abstract class cannot be instantiated.
 But pointer can be generated : Base* ptr = &D;
 Also reference can be created : Derived d; Base& ref = d;
+
+============== Interface class ==============
+Has all its member functions as pure virtual functions.
