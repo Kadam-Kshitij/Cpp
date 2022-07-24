@@ -1,0 +1,32 @@
+============== Types of inheritance ==============
+1) Single A <- B 
+2) Multilevel A <- B <- C <- D
+3) Multiple B1 <- D, B2 <- D
+4) Heirarchical B <- D1, B <- D2, B <- D3
+5) Hybrid ( Combination of more than one from above )
+
+============== Access ==============
+Inheritance scope --->
+		 			public		protected 	private ( in Base class )
+( Type of inhe. )	( In derived class )
+public : 			public 		protected 	X
+protected : 		protected 	protected 	X
+private : 			private 	private 	X
+
+============== Order of constructor call ==============
+Order of constructor call --->
+If A <- B <- C, then if object of C is created then order of constructor call A, B, C
+Order of destructor class is exactly opposite to that of constructor call in any case.
+In case of multiple inheritance
+	class D : public B1, public B2 - First B1 is called then B2 constructor
+	class D : public B2, public B1 - First B2 is called then B1 constructor
+    
+============== Initializer list ==============
+The initializer list can only initialize the class member variables. It cannot initialize base class member variables.
+Uses
+1) const member variables.
+2) reference member variables.
+3) Speed
+4) Calling base class member functions.
+eg - Derived( int a, int x ) : val{ a }, Base{ x }
+
