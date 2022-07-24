@@ -12,6 +12,15 @@ kebab-case
 Random number between [91,120]
 int random = rand() % 30 + 91;
 
+
+Terminating program
+exit - Normal termination with cleanup
+quick_exit - Quick termination with out complete cleanup
+_Exit - Normal termination without cleanup
+abort - Abnormal termination without cleanup
+atexit - Function to be called when std::exit is called
+at_quick_exit - Function to be called when std::quick_exit is called
+
 ============ Literals =============
 Literal is a fixed value that has been inserted directly into the source code.
 eg - int a = 23; std::string s = "Hello"; Here Hello and 23 are literals
