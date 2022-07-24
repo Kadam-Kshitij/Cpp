@@ -21,3 +21,8 @@ Types of constructors :
 	Copy constructor : Object should be send by reference otherwise recursive calling will take place.
 Demo obj = obj1; In this case copy constructor will be called.
 obj2 = obj1; In this case overloaded = operator will be called.
+
+=========== Anonymous objects ====================== 
+Normal object - Base b{ 23, 45 }
+Anonymous object - Base{ 23, 45 }
+Created, evaluated and destroyed on the same line.
