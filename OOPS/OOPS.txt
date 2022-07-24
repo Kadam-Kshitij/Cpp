@@ -6,3 +6,18 @@ Private - Available only in current class.
 Friend class / function - Has access to all members functions/variables of a class
 eg - friend class Foo;
 eg - friend void goo( const Base& b );
+
+
+=========== Constructor ===========
+class Derived : public Base1, public Base2 
+Here order of constructor and destructor call is ---> B1, B2, D, ~D, ~B2, ~B1
+if class Derived : public Base2, public Base1 then ---> B2, B1, D, ~D, ~B1, ~B2
+
+One constructor can call another constructor in the same class. 
+If any type of constructor is provided, then the compiler does not provide a default constructor.
+Types of constructors :
+	Default constructor : Takes no parameters
+	Parametarized constructor : Takes parameters
+	Copy constructor : Object should be send by reference otherwise recursive calling will take place.
+Demo obj = obj1; In this case copy constructor will be called.
+obj2 = obj1; In this case overloaded = operator will be called.
