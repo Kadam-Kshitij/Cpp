@@ -26,3 +26,20 @@ obj2 = obj1; In this case overloaded = operator will be called.
 Normal object - Base b{ 23, 45 }
 Anonymous object - Base{ 23, 45 }
 Created, evaluated and destroyed on the same line.
+
+
+Constructor delegation
+One constructor can call another constructor of same class. This is called as constructor delegation
+Base()
+Base( int val ) : Base{}
+Constructor can either delegate or do member initialization but not both.
+eg - Base( int val ) : Base{}, x{ val }	// This will cause CTE.
+
+One constructor can call another, and the other can call back the first. This will cause infinite looping and segmentation fault. This should be avoided.
+
+Calling one constructor from body of other should be avoided. It will compile and run. But the behavior is not as expected.
+The call from the body will create a new temporary instance which will get deleted on the same line.
+
+Proper way to reset a class is by performing *this = Base{}; rather than calling the default constructor directly.
+
+A constructor can either delegate or initialize a member function. Suppose we want to do both. In this case we can call a member function which should hold the common setup code rather than the deault constructor.
