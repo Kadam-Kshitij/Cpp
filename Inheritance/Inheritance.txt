@@ -30,3 +30,9 @@ Uses
 4) Calling base class member functions.
 eg - Derived( int a, int x ) : val{ a }, Base{ x }
 
+
+============== Abstract Class ==============
+Has atleast one member function as pure virtual
+Abstract class cannot be instantiated.
+But pointer can be generated : Base* ptr = &D;
+Also reference can be created : Derived d; Base& ref = d;
