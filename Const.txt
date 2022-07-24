@@ -1,0 +1,5 @@
+Const expressions which are known at compile time should be written as constexpr
+If the expression cannot be evaluated at compile time, error is thrown.
+eg - constexpr int a = 13 + 4;
+
+Const expressions which can be evaluated at run time shoudl be written as const.
