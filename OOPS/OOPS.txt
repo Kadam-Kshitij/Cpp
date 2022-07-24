@@ -63,3 +63,11 @@ The following functions can be overloaded
 void foo() const
 void foo()
 In case of const object, the const version is called and in case of non-const object the non-const version is called
+
+
+=========== Static member variables ===========
+Incase of const or constexpr static variables, we can assign the value in the class itself.
+Also with c++17 and above, we can assign non-static member variables using inline keywork inside the class itself.
+	static const int x = 23;
+	static constexpr int y = 34;
+	static inline int z = 19;	// Available with c++17 and above
