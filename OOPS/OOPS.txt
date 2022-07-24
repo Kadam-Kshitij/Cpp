@@ -3,9 +3,12 @@ Public - Available everywhere
 Protected - Available in the current class and derived class
 Private - Available only in current class.
 
+=========== Friend function ===========
 Friend class / function - Has access to all members functions/variables of a class
 eg - friend class Foo;
 eg - friend void goo( const Base& b );
+Only a particular member function of the class can be made friend as follows
+friend void Friend::foo( const Base& b );
 
 
 =========== Constructor ===========
@@ -28,7 +31,7 @@ Anonymous object - Base{ 23, 45 }
 Created, evaluated and destroyed on the same line.
 
 
-Constructor delegation
+=========== Constructor delegation ===========
 One constructor can call another constructor of same class. This is called as constructor delegation
 Base()
 Base( int val ) : Base{}
