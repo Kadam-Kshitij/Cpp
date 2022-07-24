@@ -46,3 +46,20 @@ The call from the body will create a new temporary instance which will get delet
 Proper way to reset a class is by performing *this = Base{}; rather than calling the default constructor directly.
 
 A constructor can either delegate or initialize a member function. Suppose we want to do both. In this case we can call a member function which should hold the common setup code rather than the deault constructor.
+
+=========== Const objects ===========
+const member functions do not modify the class member variables of call non-const member functions.
+eg - void foo() const
+const objects of a class can only access const member functions of a class
+eg - const Base b; b.foo();
+
+Another way in which a const object is used, is when we pass  a const reference to a function
+eg - void foo( const Base& b ) // In this case b cannot access non-const functions of the class.
+
+const function can return only const reference to a member variable
+const int& goo() const
+
+The following functions can be overloaded
+void foo() const
+void foo()
+In case of const object, the const version is called and in case of non-const object the non-const version is called
