@@ -8,6 +8,10 @@ snake_case
 PascalCase
 kebab-case
 
+============ Random number generation ============
+Random number between [91,120]
+int random = rand() % 30 + 91;
+
 ============ Literals =============
 Literal is a fixed value that has been inserted directly into the source code.
 eg - int a = 23; std::string s = "Hello"; Here Hello and 23 are literals
