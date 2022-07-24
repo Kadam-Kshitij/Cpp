@@ -1,3 +1,13 @@
+============ endl vs \n ============
+endl brings cursor to next line and does a flush.
+\n does not perform a flush. It also occupy 1 byte of memory.
+
+============ Cases ============
+camelCase
+snake_case
+PascalCase
+kebab-case
+
 ============ Literals =============
 Literal is a fixed value that has been inserted directly into the source code.
 eg - int a = 23; std::string s = "Hello"; Here Hello and 23 are literals
