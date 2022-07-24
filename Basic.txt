@@ -13,13 +13,19 @@ Random number between [91,120]
 int random = rand() % 30 + 91;
 
 
-Terminating program
+============ Terminating program ============
 exit - Normal termination with cleanup
 quick_exit - Quick termination with out complete cleanup
 _Exit - Normal termination without cleanup
 abort - Abnormal termination without cleanup
 atexit - Function to be called when std::exit is called
 at_quick_exit - Function to be called when std::quick_exit is called
+
+
+============ lvalue/rvalue ============
+lvalue - Evaluates to a function or object which has an identity. Has identifiable memory address.
+rvalue - Those which are not lvalue. Rvalues only exist within the scope of the expression in which they are used.
+
 
 ============ Literals =============
 Literal is a fixed value that has been inserted directly into the source code.
