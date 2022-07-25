@@ -34,6 +34,7 @@ Created, evaluated and destroyed on the same line.
 =========== Constructor delegation ===========
 One constructor can call another constructor of same class. This is called as constructor delegation
 Base()
+
 Base( int val ) : Base{}
 Constructor can either delegate or do member initialization but not both.
 eg - Base( int val ) : Base{}, x{ val }	// This will cause CTE.
@@ -74,3 +75,9 @@ Also with c++17 and above, we can assign non-static member variables using inlin
 
 =========== Nested classes ===========
 Classes can contain other classes as well. See code
+
+
+=========== explicit ============
+If constructor of a class has only one argument, it can be implicitly converted.
+eg void foo( Base b ) and the call to this function is made as foo( 23 ). This will work.
+To prevent this, explicit keyword should be added to the constructor. eg - explicit Base( int x ). This will prevent implicit conversions.
