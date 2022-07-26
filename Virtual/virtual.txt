@@ -66,3 +66,15 @@ When objects of type D1 or D2 are constructed, *__vptr is set to point to the vi
 ============ Object Slicing ============
 Happens if we assign Base b = d;
 Can happen when we pass derived object to a function accepting base object.
+
+============ Franken object ============
+Derived d1{ 5 };
+Derived d2{ 6 };
+Base& b{ d2 };
+b = d1;
+Base part of d1 is copied into d2.
+
+============ Slicing vectors ============
+If we have std::vector< Base > and we push_back a Derived object it will get sliced.
+We cannot use Base&, since vectors needs to be reassignable.
+So we need to use Base*.
