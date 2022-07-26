@@ -78,3 +78,8 @@ Base part of d1 is copied into d2.
 If we have std::vector< Base > and we push_back a Derived object it will get sliced.
 We cannot use Base&, since vectors needs to be reassignable.
 So we need to use Base*.
+
+============ Overload << ============
+If << operator is overloaded in both Base and Drived classes, then std::cout << *ptr; where Base* ptr = d; will give Base instead of derived.
+operator<< cannot be overloaded, since it is not a member function and the parameter list is also not the same.
+So we need to call a member function from within operator<< which can be overloaded.
