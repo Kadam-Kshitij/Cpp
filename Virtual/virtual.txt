@@ -12,3 +12,25 @@ then only the Base destructor is called. To call even the derived destructor we 
 
 Do not make all Base destructors virtual, because it adds a vptr which increases size of class
 
+============ Override keyword ============
+To ensure same signature is used while overriding the virtual funtion in base class
+( Without override it is possible that the signature is not same and this will not be caught in CTE )
+
+
+============ Pure virtual functions ============
+Make function = 0. No defination needed. However a defination can be provided. Which can be used as a default defination to be used by the overiden derived class function.
+int foo() = 0;
+Any class inheriting this class should provide the defination else the derived class will remain abstract.
+Derived d; Base* ptr = new Derived; // Allowed
+Base b; Base b = d;	// Not allowed
+
+If we delete ptr; where Base* ptr = new Derived; Then ptr cannot be used.
+
+============ Abstract class ============
+Has atleast one member function as pure virtual
+Abstract class cannot be instantiated.
+But pointer can be generated : Base* ptr = &D;
+
+
+============ Interface class ============
+Has all its member functions as pure virtual functions.
