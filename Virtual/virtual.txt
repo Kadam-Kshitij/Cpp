@@ -16,7 +16,6 @@ Do not make all Base destructors virtual, because it adds a vptr which increases
 To ensure same signature is used while overriding the virtual funtion in base class
 ( Without override it is possible that the signature is not same and this will not be caught in CTE )
 
-
 ============ Pure virtual functions ============
 Make function = 0. No defination needed. However a defination can be provided. Which can be used as a default defination to be used by the overiden derived class function.
 int foo() = 0;
@@ -34,3 +33,32 @@ But pointer can be generated : Base* ptr = &D;
 
 ============ Interface class ============
 Has all its member functions as pure virtual functions and has no member variables.
+
+
+============ Diamond problem / virtual Base class ============
+B1<-B2 , B1<-B3 , B2<-D, B3<-D.
+B1 constructor will be called twice due to B2 and B3.
+To prevent this make B2 and B3 virtual as follows
+	class B2 : virtual public B
+	class B3 : virtual public B
+	class D : public B2, public B3  
+Now D can directly class B1 constructor
+	D( int x ) : B1{x}, B2{x}, B3{x} {}
+ The constructor call to B1 from constructor of B2 and B3 will be ignored. They will be used in case we are creating B2 or B3 object.
+ 
+============ Late/Early binding ============
+In early binding, which function needs to be called is known at compile time.
+If it cannot be found out which function needs to be called till run time, then such cases are called late binding.
+
+============ Final ============
+Used to prevent a class from getting inherited
+eg - class Derived final : public Base
+
+============ Virtual table ============
+The virtual table is a lookup table of functions used to resolve function calls in a dynamic/late binding manner.
+The compiler also adds a hidden pointer that is a member of the base class, which we will call *__vptr.
+Every class having a virtual function will have its own vtable.
+
+When a class object is created, *__vptr is set to point to the virtual table for that class.
+For example, when an object of type Base is created, *__vptr is set to point to the virtual table for Base.
+When objects of type D1 or D2 are constructed, *__vptr is set to point to the virtual table for D1 or D2 respectively.
