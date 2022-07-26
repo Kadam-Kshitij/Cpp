@@ -1,2 +1,7 @@
 A virtual function is a special type of function that, when called,
 resolves to the most-derived version of the function that exists between the base and derived class.
+ 
+== Do not call virtual function from Base class constructor or destructor ==
+If we create derived object and try to call virtual function from the constructor,
+then the function in Base class will be called since the derived part is not yet created.
+Same for destructor of Base class.
