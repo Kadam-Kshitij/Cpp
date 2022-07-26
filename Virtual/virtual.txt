@@ -33,4 +33,4 @@ But pointer can be generated : Base* ptr = &D;
 
 
 ============ Interface class ============
-Has all its member functions as pure virtual functions.
+Has all its member functions as pure virtual functions and has no member variables.
