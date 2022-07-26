@@ -5,3 +5,7 @@ resolves to the most-derived version of the function that exists between the bas
 If we create derived object and try to call virtual function from the constructor,
 then the function in Base class will be called since the derived part is not yet created.
 Same for destructor of Base class.
+
+== Virtual Destructor ==
+If we create Base* ptr = new derived; and try to delete ptr;
+then only the Base destructor is called. To call even the derived destructor we need to make virtual ~Base();
