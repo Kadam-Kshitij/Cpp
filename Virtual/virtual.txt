@@ -62,3 +62,7 @@ Every class having a virtual function will have its own vtable.
 When a class object is created, *__vptr is set to point to the virtual table for that class.
 For example, when an object of type Base is created, *__vptr is set to point to the virtual table for Base.
 When objects of type D1 or D2 are constructed, *__vptr is set to point to the virtual table for D1 or D2 respectively.
+
+============ Object Slicing ============
+Happens if we assign Base b = d;
+Can happen when we pass derived object to a function accepting base object.
