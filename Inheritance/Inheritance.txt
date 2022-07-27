@@ -47,3 +47,7 @@ Also reference can be created : Derived d; Base& ref = d;
 
 ============== Interface class ==============
 Has all its member functions as pure virtual functions.
+
+============== Multiple Inheritance ==============
+1) In case base classes have the same named variable. Then in derived class we need to use <class_name>:: to resolve ambiguity. 
+2) Diamond problem
