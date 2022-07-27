@@ -5,6 +5,11 @@
 4) Heirarchical B <- D1, B <- D2, B <- D3
 5) Hybrid ( Combination of more than one from above )
 
+============== Types of inheritance ( Access specifiers ) ==============
+If no inheritance is specified then private inheritance is used.
+Private inheritance can be used when we are using the base class internally in the derived class and dont want to make base class interface available
+via the derived class object.
+
 ============== Access ==============
 Inheritance scope --->
 		 			public		protected 	private ( in Base class )
@@ -12,6 +17,7 @@ Inheritance scope --->
 public : 			public 		protected 	X
 protected : 		protected 	protected 	X
 private : 			private 	private 	X
+
 
 ============== Order of constructor call ==============
 Order of constructor call --->
@@ -51,3 +57,9 @@ Has all its member functions as pure virtual functions.
 ============== Multiple Inheritance ==============
 1) In case base classes have the same named variable. Then in derived class we need to use <class_name>:: to resolve ambiguity. 
 2) Diamond problem
+
+
+Function overriding
+When the base class and derived class have member functions with exactly the same name, same return-type, and same arguments list,
+then it is said to be function overriding.
+To Call base function we need to use Base:: 
