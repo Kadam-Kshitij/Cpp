@@ -59,7 +59,12 @@ Has all its member functions as pure virtual functions.
 2) Diamond problem
 
 
-Function overriding
+============== Function overriding ==============
 When the base class and derived class have member functions with exactly the same name, same return-type, and same arguments list,
 then it is said to be function overriding.
 To Call base function we need to use Base:: 
+
+============== Hiding functionality ==============
+Access specifier of Base class member variable can be changed as follows
+private: using Base::x;
+We can also delete a function in the derived class. void get() = delete;
