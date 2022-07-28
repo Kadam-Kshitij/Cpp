@@ -4,6 +4,7 @@ try - catch - throw
 To catch all type
 catch( ... )
 
+Compiler does not perform implicit conversion/promotion in exception handeling.
 If we do - throw 32
 and have - catch ( double x )
 then it will not be caught and will cause termination.
@@ -14,3 +15,24 @@ The stack unwinding happens when an exception occurs and the function tries to g
 a sutaible catch block which handles it.
 The code will continue beyond the catch block.
 
+In case of inheritance, we need to write Derived catch block first and then the Base catch block.
+Because a Derived throw can be caught by a Base catch block. In this way the Base block will be called and never the derived block.
+
+We can write our own exceptions by inheriting std::exception class
+We can override the what function - const char* what() const noexcept override
+
+We can rethrow exceptions in catch block, which will be caught by other catch blocks after stack unwinding.
+
+Exceptions should be caught by reference otherwise object slicing may occur.
+If we throw derived exception and do, catch( Base& b ){ throw b; } then it will rethrow a base type of exception.
+We need to use throw; which rethrows the exact same exception. throw b; will rethrow copy initialized exception.
+
+Fuction Try blocks - Eg - TO catch exceptions
+eg - Derived () try : Base{} {} catch( ... ) {}
+This will catch exceptions from the try keyword till end of function.
+We can either throw a new or rethrow the same exception. Else the same exception will be rethrown.
+
+Do not throw exceptions in destructors. Compiler does not know where to perform stack unwinding.
+Memory leaks can happen. 1) Use smart pointers 2) Keep the cleanup code outside the catch block.
+
+The noexcept specifier defines a function as non-throwing.
