@@ -1,0 +1,16 @@
+========== Prevent dynamic object creation ==========
+Make the new operator private
+
+========== Prevent static object creation ==========
+1) Use final keyword
+2) Make constructor private. Create a static function which returns an instance of the class.
+3) Create a dummy class with private constructor. virtually inherit the class from this class.
+
+========== Overload new and delete operator ==========
+void* operator new( size_t size )
+{
+}
+
+void operator delete( void* ptr )
+{
+}
