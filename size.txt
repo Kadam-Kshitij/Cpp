@@ -1,3 +1,0 @@
-Empty class has size 1. This is differentiate between two class objects.
-
-Empty class with virtual function has size equal to size of pointer.
