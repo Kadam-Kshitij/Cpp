@@ -13,15 +13,6 @@ Random number between [91,120]
 int random = rand() % 30 + 91;
 
 
-============ Terminating program ============
-exit - Normal termination with cleanup
-quick_exit - Quick termination with out complete cleanup
-_Exit - Normal termination without cleanup
-abort - Abnormal termination without cleanup
-atexit - Function to be called when std::exit is called
-at_quick_exit - Function to be called when std::quick_exit is called
-
-
 ============ lvalue/rvalue ============
 lvalue - Evaluates to a function or object which has an identity. Has identifiable memory address.
 rvalue - Those which are not lvalue. Rvalues only exist within the scope of the expression in which they are used.
@@ -58,13 +49,6 @@ case 2:
 In case of 0 or 1, both statement_1 and statement_2 are executed.
 
 Should not initialize variables inside the switch because the initialization step might get skipped. Causes CTE.
-
-============ Reference ============
-Cannot return reference to local variable from a function.
-Refernce has to be initialized at the time of declaration.
-Cannot be void. Ones assigned cannot be used to point to other.
-const int& will not allow to change the value using the reference. The value can be changed using original variable.
-int& const gives CTE.
 
 
 ============ Program termination =============
