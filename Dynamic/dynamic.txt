@@ -2,6 +2,8 @@
 To allocate memory - int* ptr = new Base();
 To allocate array of memory - int* ptr = new int[8];
 
+If new is not able to allocate memory, bad_alloc exception is thrown.
+
 ============ Delete ============
 Delete single memory - delete ptr;
 Delete array of memory - delete[] ptr;
