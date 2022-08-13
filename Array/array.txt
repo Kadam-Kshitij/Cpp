@@ -20,3 +20,11 @@ We can also write the foo function as void foo( int* ptr ) since array boils dow
 std::cout << arr << std::endl; prints the address of the first array element.
 &arr[4] is actually &( *( arr + 4 ) ); which is arr + 4; which prints address of the 5th element of the array.
 arr[4] is actually *( arr + 4 ); which prints the 5th element of the array.
+
+
+===== For  =====
+for( int i : arr ) in this i will iterate over the array. We need to use std::cout << i << std::endl; and not arr[i].
+for( int& i : arr ) in this case if we change value of i, then the actual array element gets modified.
+
+Since c++20, we can use a variable to keep a track of the index.
+for( int i; int& val : arr ) which needs to be incremented in the loop every time ( ++i ).
