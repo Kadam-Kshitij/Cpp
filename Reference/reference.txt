@@ -23,7 +23,7 @@ int& const z = a; // CTE - reference cannot have such a const
 int& ref; // CTE. Reference should be assigned at the time of declaration.
 
 int& ref = 3; // CTE
-const int& ref = 3; // No CTE
+const int& ref = 3; // No CTE. Temporary objects are destroyed on the same line. But because of ref the lifetime of 3 is increased.
 
 const int a = 34;
 int& ref = a; // CTE
