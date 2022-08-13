@@ -2,7 +2,12 @@
 To allocate memory - int* ptr = new Base();
 To allocate array of memory - int* ptr = new int[8];
 
-If new is not able to allocate memory, bad_alloc exception is thrown.
+new will throw bad_alloc exception if it is not able to allocate memory.
+But we can use
+new( std::nothrow ) int;
+In this case new will return NULL instread of exception.
+
+If we use new with free(), then destructor is not called. This might cause memory leak.
 
 ============ Delete ============
 Delete single memory - delete ptr;
@@ -16,3 +21,27 @@ Pointer which points to a deallocated memory is called as dangling pointer.
 int* ptr = new int;
 delete ptr;
 int a = *ptr; // Here ptr is already deleted.
+
+
+============ Malloc vs new ============
+1) new calls the constructor, malloc does not
+2) new is an operator, malloc is a function
+3) new returns pointer of data type, malloc returns void pointer
+4) new can be overloaded, malloc cannot
+5) new calculates memory on its own, malloc needs the memory from user
+6) In case of insufficient memory, malloc returns NULL, new throws bad_alloc exception.
+
+============ delete vs free() ============
+1) delete calls the destructor, free() does not.
+2) delete is a operator, free() is a function
+3) delete is faster than free()
+
+
+============ Order of call ============
+Overloaded new operator
+Constructor
+Destructor
+Overloaded delete operator
+
+delete should be called only on pointers which are allocated using new keyword.
+Base b; Base* p = &b; delete p; This will compile but will cause RTE - invalid pointer.
