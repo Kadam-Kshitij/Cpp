@@ -1,0 +1,17 @@
+===== Size =====
+1) sizeof( arr ) / sizeof( arr[0] )
+2) std::size( arr ); // For C++17 and above
+
+===== Index =====
+Out of bound ( also negative ) indexing is allowed in arrays.
+So one needs to be carefull since no errors are thrown and can cause some other variables value to be changed.
+
+===== Passing to a function =====
+An array gets converted to a pointer when passed to a function.
+As a result the actual array gets passed. Making changes in the function causes actual array to change.
+
+In the function, arr will act as a pointer. So sizeof will not give us proper output.
+In function, sizeof( arr ) will display 8 which is sizeof pointer on 64-bit machine.
+
+We need to pass an int parameter to the function along with the array. foo( arr, sizeof( arr ) / sizeof( arr[0] ) );
+
