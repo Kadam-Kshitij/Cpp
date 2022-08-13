@@ -1,0 +1,10 @@
+
+
+Deleting a null pointer has no effect.
+
+
+============ Dangling pointer ============
+Pointer which points to a deallocated memory is called as dangling pointer.
+int* ptr = new int;
+delete ptr;
+int a = *ptr; // Here ptr is already deleted.
