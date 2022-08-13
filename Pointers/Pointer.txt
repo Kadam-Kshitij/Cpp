@@ -1,7 +1,7 @@
 int* x, y;  // Here x is a pointer but y is not.
 
 This is illegal -
-int* x
+int x;
 double* ptr = &x;
 
 char buff[20] = "abcdef";
@@ -26,6 +26,11 @@ ptr = &b;             // Illegal
 
 const int* const ptr = &a;
 // Both ptr = &b and *ptr = 44 are illegal
+
+const int a = 73;
+int* ptr = &a; // CTE
+int* const ptr = &a; // CTE
+const int* ptr = &a; // No CTE
 
 ============ Dangling pointer ============
 Pointer which points to a deallocated memory is called as dangling pointer.
