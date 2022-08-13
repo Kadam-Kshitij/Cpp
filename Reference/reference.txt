@@ -8,6 +8,7 @@ Advantage of reference -
 
 
 --- Reference ---
+Reference ones assigned cannot change the object they are referring to.
 int& ref = a;
 int& ref2 = b;
 ref = b;    // This will change the value of a and ref. It will not make ref point to b
@@ -18,4 +19,20 @@ ref = 3;  // CTE
 a = 18;   // This is OK
 
 int& const z = a; // CTE - reference cannot have such a const
+
+int& ref; // CTE. Reference should be assigned at the time of declaration.
+
+int& ref = 3; // CTE
+const int& ref = 3; // No CTE
+
+const int a = 34;
+int& ref = a; // CTE
+
+int a = 23;
+int& ref1 = a;
+int& ref2 = ref1;
+Here ref2 is not a reference to reference, since ref1 boils down to a.
+
+Dangling reference
+When the object a reference is pointing to is destroyed before the reference, it is called as dangling reference. Leads to undefined behavior.
 
