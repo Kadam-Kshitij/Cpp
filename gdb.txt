@@ -65,3 +65,7 @@ Make the child sleep - Using ps get the child pid. In a seperate gdb instance at
 Now parent can be debugged in one gdb instance and child in the other
 Other way is the "set follow-fork-mode <mode>" where mode can be child or parent. This way we can decide which process to debug after fork.
 
+
+--- Threads ---
+To get the list of running threads - info threads
+To jump to a particular thread - thread <thread_number>
