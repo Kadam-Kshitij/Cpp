@@ -1,5 +1,0 @@
-Make default and copy constructor as private
-
-Create a private static Singleton* ptr
-
-Create a public static Singleton* GetInstance() which returns a new instance if not already present else returns the already created instance.
