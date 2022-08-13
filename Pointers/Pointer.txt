@@ -41,3 +41,7 @@ int a = *ptr; // Here ptr is already deleted.
 ============ Void pointers ============
 Void pointers can point to any data type.
 But since they have no idea where they are pointing to they cannot be used for dereference. Arithmatic operations can also be not performed.
+
+
+Null pointers
+Dereference a null pointer leads to undefined behavior.
