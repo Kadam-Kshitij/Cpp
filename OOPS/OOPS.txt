@@ -81,3 +81,7 @@ Classes can contain other classes as well. See code
 If constructor of a class has only one argument, it can be implicitly converted.
 eg void foo( Base b ) and the call to this function is made as foo( 23 ). This will work.
 To prevent this, explicit keyword should be added to the constructor. eg - explicit Base( int x ). This will prevent implicit conversions.
+
+============ Size ============
+Empty class has size 1. This is differentiate between two class objects.
+Empty class with virtual function has size equal to size of pointer.
