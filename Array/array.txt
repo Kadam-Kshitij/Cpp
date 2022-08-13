@@ -14,4 +14,9 @@ In the function, arr will act as a pointer. So sizeof will not give us proper ou
 In function, sizeof( arr ) will display 8 which is sizeof pointer on 64-bit machine.
 
 We need to pass an int parameter to the function along with the array. foo( arr, sizeof( arr ) / sizeof( arr[0] ) );
+We can also write the foo function as void foo( int* ptr ) since array boils down to pointer when passed to a function.
 
+===== Array and pointers =====
+std::cout << arr << std::endl; prints the address of the first array element.
+&arr[4] is actually &( *( arr + 4 ) ); which is arr + 4; which prints address of the 5th element of the array.
+arr[4] is actually *( arr + 4 ); which prints the 5th element of the array.
