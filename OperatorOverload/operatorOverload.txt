@@ -1,2 +1,7 @@
 Non-oberloadable operators --->
-. ?: * :: sizeof typeid
+.
+?: 
+.* 
+::
+sizeof
+typeid
