@@ -82,7 +82,7 @@ Classes can contain other classes as well. See code
 
 =========== explicit ============
 If constructor of a class has only one argument, it can be implicitly converted.
-eg void foo( Base b ) and the call to this function is made as foo( 23 ). This will work.
+eg void foo( Base b ) and the call to a function void foo( Base& b ) is made as foo( 23 ). This will work.
 To prevent this, explicit keyword should be added to the constructor. eg - explicit Base( int x ). This will prevent implicit conversions.
 
 ============ Size ============
