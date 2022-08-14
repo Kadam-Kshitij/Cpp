@@ -88,3 +88,7 @@ To prevent this, explicit keyword should be added to the constructor. eg - expli
 ============ Size ============
 Empty class has size 1. This is differentiate between two class objects.
 Empty class with virtual function has size equal to size of pointer.
+
+============ Initializer list ============
+Used to initialize non static const, reference and base class constructors.
+The variables are initialized in the order in which they are declared in the class.
