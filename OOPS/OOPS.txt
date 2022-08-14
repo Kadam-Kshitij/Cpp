@@ -34,6 +34,12 @@ Anonymous object - Base{ 23, 45 }
 Created, evaluated and destroyed on the same line.
 
 
+============ Initialization ============
+class Base
+{
+	int a = 45;
+This is ok.
+
 =========== Constructor delegation ===========
 One constructor can call another constructor of same class. This is called as constructor delegation
 Base()
