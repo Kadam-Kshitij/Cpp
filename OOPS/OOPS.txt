@@ -98,3 +98,14 @@ Empty class with virtual function has size equal to size of pointer.
 ============ Initializer list ============
 Used to initialize non static const, reference and base class constructors.
 The variables are initialized in the order in which they are declared in the class.
+
+
+============ Class ============
+class Base
+{
+    Base b; // CTE - Incomplete type
+    Base* ptr; // Ok
+public:
+    static Base b; // Ok
+};
+Base Base::b;
