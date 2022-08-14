@@ -3,6 +3,9 @@ Public - Available everywhere
 Protected - Available in the current class and derived class
 Private - Available only in current class.
 
+A class has access to private members of the object it is working on, along with private members of another object of the same class.
+void copy( Base& b ), here we can directly write x = b.x;
+
 =========== Friend function ===========
 Friend class / function - Has access to all members functions/variables of a class
 eg - friend class Foo;
