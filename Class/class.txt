@@ -1,12 +1,16 @@
 ========= Prevent dynamic class object creation =========
 Make the new operator private
 
+
 ========= Overload new/delete operator =========
 Order of call ->
 Overloaded new - constructor - destructor - Overloaded delete.
 
 
-========= =========
+========= Mutable =========
+If a member variable is declared mutable then such a variable can be modified in a const member function.
+mutable int x;
+
 
 ========= =========
 
