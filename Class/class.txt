@@ -1,0 +1,3 @@
+========= Prevent dynamic class object creation
+Make the new operator private
+
