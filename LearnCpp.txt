@@ -1,0 +1,402 @@
+0,1,2,3,o,8,19,20,24
+
+.cpp files
+    |
+    |
+    |   Pre-processing ( include files, remove comments, expand macros )
+    |
+    |
+   \ /
+    '
+.ii files
+    |
+    |
+    |   Compiler ( Complie code and convert to assembly language code )
+    |
+    |
+   \ /
+    '
+.s files ( assembly language )
+    |
+    |
+    |   Assembler ( Convert to machine language object files )
+    |
+    |
+   \ /
+    '
+.o files ( object files )
+    |
+    |
+    |   Link different object files/ library files together
+    |
+    |
+   \ /
+    '
+Executable
+
+
+Standard I/O ----->
+std::cout has a buffer which is flushed periodically.
+endl vs "\n"
+Both causes the output to new line. But endl also flushes the cout buffer which
+takes time. C++ periodically flushes after some time. So use \n to increse code speed.
+"\n" also occupy 1 byte of memory
+
+Header Guards ----->
+Used to prevent including same header file twice which can cause CTE
+#ifndef ___UNIQUE_NAME___
+#define ___UNIQUE_NAME___
+...
+#endif // ___UNIQUE_NAME___
+
+Another way is by using
+#pragma ones 
+
+
+Random number generation ----->
+Random number between [91,120]
+int random = rand() % 30 + 91;
+
+lvalue/rvalue ----->
+lvalue - Evaluates to a function or object which has an identity. Has identifiable memory address.
+rvalue - Those which are not lvalue. Rvalues only exist within the scope of the expression in which they are used.
+
+Literals ----->
+Literal is a fixed value that has been inserted directly into the source code.
+eg - int a = 23; std::string s = "Hello"; Here Hello and 23 are literals
+
+
+Bitset ----->
+#include <bitset>
+std::bitset<11> bits{ 0b10101010101 };    // Assigns binary value.
+std::bitset<11> bits{ 10101010101 };      // Converts the decimal value to binary
+bits.set( index );        // Set a particular bit
+bits.reset( index );      // reset a particular bit
+bits.flip( index );       // Flip a particular bit
+std::cout << bits << std::endl;                    // Display all bits in binary
+std::cout << bits.test( index ) << std::endl;     // Display only the secified index
+
+
+Enums ----->
+enum is a user-defined type that consists of a set of named integer constants.
+enum <enum_name> {
+	value1,			// 0
+	value2,			// 1
+	value3 = 100,	// 100
+	value4			// 101
+};
+Two enums in same namespace cannot have same element. Causes CTE - redeclaration.
+Implicit conversion to int is allowed.
+Eg - if( 3 == value2 )
+	 std::cout << value2 << std::endl; // Prints 1
+Comparing elements of two different enums does not produce CTE.
+
+Scoped Enums ----->
+Strongly type and strongly scoped.
+enum class <enum_name> {
+	value1,
+	value2,
+	value3 = 10,
+	value4
+};
+Requires enum_name along with scope resolution operator to access the elements.
+Eg - <enum_name>::<element>
+Two enums can contain element with same name.
+Implicit conversion not allowed.Static cast to int is required to perform operations.
+Eg - std::cout << static_cast< int >( <enum_name>::<element> ) << "\n";
+	 if( 2 == static_cast< int >( <enum_name>::<element> ) )
+
+The default underlying type of enum is int. However we can specify the type as follows
+enum <enum_name> : <type> {
+};
+Depending upon the underlying type, the sizeof enum changes. For int it is 4 bytes.
+If our enum contains smaller values ( eg 3, 42, 15 ) then we can use unsigned char as
+underlying type. This helps in saving space.
+
+
+
+Const Pointers ----->
+int x = 10;
+int y = 20;
+
+const int* ptr1 = &x;	// Pointer to const data
+// *ptr1 = 20;	// CTE
+ptr1 = &y;		// Ok
+
+int* const ptr2 = &x;	// Const pointer
+// ptr2 = &y;	// CTE
+*ptr2 = 30;		// OK
+
+const int* const ptr3 = &x;	// Const pointer to const data
+// *ptr3 = 30;	// CTE
+// ptr3 = &y;	// CTE
+
+const int z = 30;
+const int* ptr4 = &z;
+// int* ptr5 = &z;			// CTE - invalid conversion from ‘const int*’ to ‘int*’
+// int* const ptr6 = &z;	// CTE - invalid conversion from ‘const int*’ to ‘int*’
+
+
+
+Unions ----->
+Special data type which allows multiple variables to share same memory space
+union Xyz {
+	int i;
+	float f[2];
+	Base obj;
+};
+Here the sizeof union = maximum size of all members.
+All variables share the same memory location. Hence only one element can be stored at at time.
+The latest updated member can be accessed. Accessing other members will output garbage value.
+Eg - Xyz xyz; xyz.i = 23;
+
+
+List Initialization ----->
+Prevents narrowing conversions
+int a{ 23 };
+int b{ 45.6 }; // CTE - Prevents Narrowing conversions
+Base obj{ 47, 78 };
+
+Switch fallthrough ----->
+If break/return statements are not used in case statement, the next case statements
+will be executed as well.
+If there is a initialiation ( int y = 90; ) in a case statement it will throw CTE
+Defination and assignment is allowed. ( int y; y = 10; )
+
+Program termination ----->
+std::abort() - Abnormal termination without cleanup
+std::exit( EXIT_FAILURE ) - Normal termination with cleanup
+std::quick_exit( EXIT_SUCCESS ) - Normal termination without complete cleanup
+std::_Exit( EXIT_SUCCESS ) - Normal termination without cleanup
+std::atexit( <function_name> ) - Register function to be called when exit is called. In case of multiple function, order of calling is reverse of adding them.
+std::at_quick_exit( <function_name> ) - Register function to be called when std::quick_exit() is called.
+
+Inheritance ----->
+1) Single A <- B
+2) Multilevel A <- B <- C
+3) Multiple  B1 <- D, B2 <- D 
+4) Hierarchical B1 <- A, B1 <- B, B1 <- C
+One base class, multiple derived class from same base class
+5) Hybrid - Combination of any of the above
+
+Order of constructor call
+A <- B <- C <- D then order is A(), B(), C(), D()
+Base class is constructed first.
+class C : public A, public B then A(), B(), C()
+class C : public B, public A then B(), A(), C() 
+Order of destructor call is exactly opposite to that of constructor
+
+Diamond problem
+B1<-B2 , B1<-B3 , B2<-D, B3<-D.
+B1 constructor will be called twice due to B2 and B3.
+To prevent this make B2 and B3 virtual as follows
+	class B2 : virtual public B
+	class B3 : virtual public B
+	class D : public B2, public B3  
+Now D can directly class B1 constructor
+	D( int x ) : B1{x}, B2{x}, B3{x} {}
+
+Initializing Base class from derived class
+Base( int a ) : _a{ a }
+Derived( int a, int b ) : Base{ a }, _b{ b }
+Initializer list can be used to call Base class constructors
+
+Inheritance scope
+		 			public		protected 	private ( in Base class )
+( Type of inhe. )	( In derived class )
+public :            public      protected   X
+protected :         protected   protected   X
+private :           private     private     X
+
+If we have same name function in Base and derived class, then we can use
+Base::foo() in derived class to call the Base class function.
+void foo()
+{
+	// Some additional functionality
+	Base::foo();
+}
+To call Base class function using the Derived class object we can use,
+obj.Base::foo(); // Calls Base foo
+obj.foo();		 // Calls Derived foo
+
+Changing inherited members access
+public:
+	using Base::foo;
+This will make foo public in Derived class which might have been private in Base
+
+Hiding Base class functionality 
+1) Change access to private in Derived class by
+private:
+	using Base::foo;
+
+2) We can delete a function in derived class using
+void foo() = delete;
+But we can call the base class function as, objD.Base::foo();
+Or we can upcast to Base& and call the foo function in Base
+in both the above cases.
+
+Dynamical memory allocation ----->
+int* ptr{ new int{ 23 } };	// Allocate memory on heap
+delete ptr;					// Delete memory
+
+Dangling pointers
+A pointer that is pointing to deallocated memory is called a dangling pointer.
+Dereferencing or deleting a dangling pointer will lead to undefined behavior
+
+Null Pointer
+Dereferencing null pointers can cause segmentation fault.
+Delete null pointers is ok and will do nothing.
+
+If new operator fails, bad_alloc exception is thrown
+Alternately, we can use int* ptr{ new ( std::nothrow ) int };
+which will not throw an exception and return null ptr.
+
+To dynamically allocate array of memory use,
+int ptr{ new int[4] };
+delete[] ptr;
+Accessing elements - ptr[2];
+
+Destructor is called when the class instance is destroyed.
+Has no return type, takes no input args. Class can have only one destructor.
+
+Multi dimentional array using pointer to pointer
+int** matrix = new int*[4]; // 4 rows
+for( int i = 0; i < 4; ++i )
+{
+	matrix[i] = new int[3]; // 3 columns
+}
+
+for( int i = 0; i < 4; ++i )
+{
+	delete[] matrix[i];
+}
+delete[] matrix;
+
+Instead we can just use one dimentional array and using simple maths perform operations
+int* ptr{ new int[4*3] };
+
+void pointers are pointers which can be cast into any type.
+Arithmatic functions cannot be performed on void pointers.
+Dereferencing void pointes is not allowed. Deleting void pointers leads to undefined behavior.
+
+
+Classes ----->
+const member variables needs to be initialized in the initializer list.
+const member functions do not madify a member variable.
+const Class objects can only access const member functions.
+
+Access specifiers
+public members - available everywhere
+protected members - avaibale in current class and class inheriting from this class and friend functions/class
+private members - only current class and friend functions/Classes
+
+Initializer list
+Base( int a, int b, int c ) : Base{ a }, _b{ b }, _c{ c }
+Uses 1) Initialize const, reference members
+2) Initialize base class
+3) Performance - initializing members directly, rather than first 
+default-constructing them and then assigning new values inside the constructor body
+
+Types of constructors
+Default - No args. Provided by compiler if no constructors are specified
+Paramaterized - Takes args
+Copy - Initialize object from existing object of same type
+
+
+
+
+
+Functions ----->
+- Argument vs Parameters -
+Argument - foo( a, b ); 
+Parameter - void foo( int a, int b )
+ 
+- Passing arguments -
+1) Pass by value - void foo( int a, int b ) -- foo( a, b );
+2) Pass by reference - void foo( int& a, int& b ) -- foo( a, b );
+3) Pass by address - void foo( int* a, int* b ) -- foo( &a, &b );
+Here pass by value is used if we dont want to modify the passed arguments value. Pass by reference is used if we want to modify the passed arguments value.
+For large data types ( structs, class etc ) pass by reference should be used to prevent performance isuue due to copy.
+In case of pass by address, void foo( int* a ), foo( ptr ) the address is passed by reference. and if we change a = &<new_var> then it will not change the
+address to which ptr is pointing.
+If we use void foo( int*& a ), foo( ptr ), the the pointer is passed by reference and will cause chage in ptr.
+
+Command line args
+int main( int argc, char** argv )
+int main( int argc, char* argv[] )
+argc is number of args. Binary name is itself one arg.
+argv[i] is the ith arg.
+
+- Inline functions -
+inline void foo( int a, int b )
+When a function call is made there is a overhead due to saving current address, jumping to new address, function parameters and so on. For small functions
+this overhead could be comparable to execution time of the function. For large functions this overhead is negligible.
+The compiler will replace the code where call to inline function is made with the body of the function. This reduces execution time.
+Should not be used in case lot of calls are made to the inline function. This increases the size of output binary.
+Modern computers are smart and do inlining by themselves.
+Inlining happens at compile time.
+  
+- Stack vs Heap -
+Stack is small in size ( 1-8 MB ). Contains variables and function call stack.
+If lot of function calls happen or in case of large data structures, the stack might get filled up causing segmentation fault. 
+Heap is large in size. Variables allocated dynamically using new, malloc, calloc are assigned on the heap.
+Stack memory is allocated/deallocated automatically by compiler. Heap is done by used manually.
+Heap is slower and costly.
+Stack is contigious. Heap is randomly allocated.
+
+- Ellipsis -
+#include <cstdarg>
+void foo( int c, ... )
+A function can take any number of arguments.
+va_list v1;
+va_start( v1, c ); // First parameter is va_list to initialize. Second is last non-ellipsis argument.
+va_arg( v1, int ); // First parameter is va_list. Second parameter is type. Used to take out arg from the list.
+va_end( v1 );      // Cleanup the list.
+va_copy( v2, v1 ); // No need to start v2. Only end. If we have removed few args from v1 and then done a copy, it would be wrong. Puts random value.
+
+
+- Function pointer -
+int ( *foo )( int, float ) = &goo;
+int ( *foo )( int, float ) = goo;
+To call the function we can use two ways - 
+foo( 23, 45 );        // Implicit dereference
+( *foo )( 23, 45 );   // Explicit dereference
+*foo( 23, 45 );       // Wrong. CTE.
+Passing function pointer to other functions -
+void goo( int ( *fptr )( int, int ) )
+goo( foo );
+Another way is by using the std::function -
+#include <functional>
+std::function< float( int, float ) > fptr = hoo;
+fptr( 23, 6 );
+
+If function pointer is made NULL, it can lead to undefined behavior.
+
+Pointer to member function of a class
+int ( Base::*fptr )( float ) = &Base::foo;
+( obj.*fptr )( 23.4 );
+( ptr->*fptr )( 13.4 );
+
+Array of function pointers - void( *fptr[] )( int, float ) = { foo, goo, hoo };
+Call --> ( *fptr[i] )( 23, 57.3 );
+Array of function pointers can be used for call back. ( Eg - Event loop )
+Call backs can be used to control how a particular part of the function should work. Eg. sort ascending or descending
+
+Providing default values --> void foo( int( *fptr )( int, float ) = hoo )
+
+
+Lambdas
+Anyonomous functions that can be defined inside another function
+Syntax -
+[capture_clause](args)->return value{ commands };
+
+capture_clause allows capturing nearby variables in 
+[&] - Capture all by reference
+[=] - Capture all by value
+[&, a] - Capture all by refernce and a by value
+[=, &a] - Capture all by refernce and a by reference
+[&a, =] - Illegal, default capture should be first
+[a, &b] - Capture a by value and b by reference
+Variables captured by value are const by default. Add mutable keyword to allow modification
+[a]() mutable {};
+Variables captures by refence are not const except the original var is const. So no mutable required.
