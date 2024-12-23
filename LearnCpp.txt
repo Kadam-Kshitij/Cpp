@@ -398,5 +398,15 @@ capture_clause allows capturing nearby variables in
 [&a, =] - Illegal, default capture should be first
 [a, &b] - Capture a by value and b by reference
 Variables captured by value are const by default. Add mutable keyword to allow modification
-[a]() mutable {};
-Variables captures by refence are not const except the original var is const. So no mutable required.
+[a]() mutable -> return_value {};
+Variables captures by refence are not const except if the original var is const. So no mutable required.
+
+Lambdas are captures when they are defined.
+If variable are captured by value then the values captured at the time of definition are used even if the variable changes value later.
+int a = 45;
+auto lam = [=]()->int{ std::cout << "Lam" << a << std::endl; return a; };	
+a = 89;
+lam(); // Here output is Lam45
+
+In case of capture by reference ,can lead to dangling reference if variable gets
+deleted before lambda call.  
